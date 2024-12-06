@@ -1,4 +1,19 @@
+import { Link } from "react-router";
+import { LoginType } from "../Models/LoginType";
+import { useAuth } from "../Helpers/AuthHelper";
+
+
 function RegisterPage(){
+  const auth = useAuth() 
+  function loginUser(event:any){
+    event.preventDefault()
+    var loginUser : LoginType = {
+      username: event.target[0].value,
+      email:event.target[1].value,
+      password: event.target[2].value
+    };
+    auth.login(loginUser)
+  }
     return (
         <>
           <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -14,7 +29,7 @@ function RegisterPage(){
             </div>
     
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-              <form action="#" method="POST" className="space-y-6">
+              <form onSubmit={loginUser} className="space-y-6">
               <div>
                   <label htmlFor="username" className="block text-sm/6 font-medium text-gray-900">
                     Kullanıcı adı
@@ -68,7 +83,7 @@ function RegisterPage(){
                   <input
                       id="password-repeat"
                       name="password-repeat"
-                      type="password-repeat"
+                      type="password"
                       required
                       autoComplete="current-password"
                       className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -87,9 +102,9 @@ function RegisterPage(){
     
               <p className="mt-10 text-center text-sm/6 text-gray-500">
                 Üye misiniz?{' '}
-                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                <Link to={"/Giris"}className="font-semibold text-indigo-600 hover:text-indigo-500">
                   Giriş yap
-                </a>
+                </Link>
               </p>
             </div>
           </div>

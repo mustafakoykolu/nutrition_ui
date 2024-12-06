@@ -1,22 +1,39 @@
-import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+} from "@headlessui/react";
+import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link, useLocation } from "react-router-dom";
 
-
-
-
-function classNames(...classes:any[]) {
-  return classes.filter(Boolean).join(' ')
+function classNames(...classes: any[]) {
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
   const location = useLocation();
   const navigationTabs = [
-    { name: 'Dashboard', href: '/', current: location.pathname==="/" },
-    { name: 'Kalori Takip', href: '/kalori-takip', current: location.pathname==="/kalori-takip"  },
-    { name: 'Yemek Listem', href: '/yemek-listem', current: location.pathname==="/yemek-listem"  },
-    { name: 'Alışveriş Listem', href: 'alisveris-listem', current: location.pathname==="/alisveris-listem"  },
-  ]
+    { name: "Dashboard", href: "/", current: location.pathname === "/" },
+    {
+      name: "Kalori Takip",
+      href: "/kalori-takip",
+      current: location.pathname === "/kalori-takip",
+    },
+    {
+      name: "Yemek Listem",
+      href: "/yemek-listem",
+      current: location.pathname === "/yemek-listem",
+    },
+    {
+      name: "Alışveriş Listem",
+      href: "alisveris-listem",
+      current: location.pathname === "/alisveris-listem",
+    },
+  ];
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -27,8 +44,14 @@ export default function Navbar() {
             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
-              <Bars3Icon aria-hidden="true" className="block size-6 group-data-[open]:hidden" />
-              <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-[open]:block" />
+              <Bars3Icon
+                aria-hidden="true"
+                className="block size-6 group-data-[open]:hidden"
+              />
+              <XMarkIcon
+                aria-hidden="true"
+                className="hidden size-6 group-data-[open]:block"
+              />
             </DisclosureButton>
           </div>
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
@@ -44,11 +67,15 @@ export default function Navbar() {
                 {navigationTabs.map((item) => (
                   <Link
                     key={item.name}
-                    aria-current={item.current ? 'page' : undefined}
+                    aria-current={item.current ? "page" : undefined}
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                      'rounded-md px-3 py-2 text-sm font-medium'
-                    )} to={item.href}                  >
+                      item.current
+                        ? "bg-gray-900 text-white"
+                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                      "rounded-md px-3 py-2 text-sm font-medium"
+                    )}
+                    to={item.href}
+                  >
                     {item.name}
                   </Link>
                 ))}
@@ -83,28 +110,28 @@ export default function Navbar() {
                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <MenuItem>
-                  <a
-                    href="#"
+                  <Link
+                    to={"#"}
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                   >
                     Profilim
-                  </a>
+                  </Link>
                 </MenuItem>
                 <MenuItem>
-                  <a
-                    href="#"
+                <Link
+                    to={"#"}
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                   >
                     Ayarlar
-                  </a>
+                  </Link>
                 </MenuItem>
                 <MenuItem>
-                  <a
-                    href="#"
+                <Link
+                    to={"#"}
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                   >
                     Çıkış Yap
-                  </a>
+                  </Link>
                 </MenuItem>
               </MenuItems>
             </Menu>
@@ -119,10 +146,12 @@ export default function Navbar() {
               key={item.name}
               as="a"
               href={item.href}
-              aria-current={item.current ? 'page' : undefined}
+              aria-current={item.current ? "page" : undefined}
               className={classNames(
-                item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                'block rounded-md px-3 py-2 text-base font-medium',
+                item.current
+                  ? "bg-gray-900 text-white"
+                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                "block rounded-md px-3 py-2 text-base font-medium"
               )}
             >
               {item.name}
@@ -131,5 +160,5 @@ export default function Navbar() {
         </div>
       </DisclosurePanel>
     </Disclosure>
-  )
+  );
 }
