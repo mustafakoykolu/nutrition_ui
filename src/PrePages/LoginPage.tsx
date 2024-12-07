@@ -3,19 +3,21 @@ import { LoginType } from "../Models/LoginType";
 import { useAuth } from "../Helpers/AuthHelper";
 import ErrorDialog from "../Dialogs/ErrorDialog";
 import { useState } from "react";
-async function loginUser(event: any, auth: any,setShowErrorDialog:any,setErrMessage:any) {
+async function loginUser(
+  event: any,
+  auth: any,
+  setShowErrorDialog: any,
+  setErrMessage: any
+) {
   event.preventDefault();
   var registerUser: LoginType = {
     email: event.target[0].value,
     password: event.target[1].value,
   };
   var response = await auth.login(registerUser);
-  debugger;
-  console.log(response)
-  if (response.status===200) {
+  if (response.status === 200) {
     auth.authorizeLoginUser(response.data);
-  }
-  else{
+  } else {
     setShowErrorDialog(true);
     setErrMessage(response.data);
   }
@@ -29,14 +31,15 @@ function LoginPage() {
   );
   return (
     <>
-    <ErrorDialog
+      <ErrorDialog
         header="Giriş yapılamadı!"
         message={errMessage}
         buttonMessage="tamam"
         open={showErrorDialog}
         setOpen={setShowErrorDialog}
       />
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 p-20 bg-white m-20 shadow-xl rounded-2xl">
+
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
@@ -51,7 +54,7 @@ function LoginPage() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
             onSubmit={(event) => {
-              loginUser(event, auth,setShowErrorDialog,setErrMessage);
+              loginUser(event, auth, setShowErrorDialog, setErrMessage);
             }}
             className="space-y-6"
           >

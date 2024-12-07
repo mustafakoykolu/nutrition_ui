@@ -6,8 +6,8 @@ function Home() {
       <div className="sm:block lg:hidden">
         <img src={nutritionist} alt="" />
       </div>
-      <div id="home-explainer-container" className="flex flex-row">
-        <div className="lg:basis-2/3 md:basis-3/3">
+      <div id="home-explainer-container" className="flex flex-row ">
+        <div className="lg:basis-2/3 md:basis-3/3  bg-white m-20 shadow-xl rounded-3xl p-10">
           <h1 className="text-3xl font-semibold mt-2">
             Bütün beslenme ihtiyaçlarınız için tek bir uygulama!
           </h1>

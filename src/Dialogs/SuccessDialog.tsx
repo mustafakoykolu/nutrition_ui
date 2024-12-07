@@ -1,5 +1,6 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router';
 
 type SuccessProperties= {
   header: string;
@@ -7,10 +8,11 @@ type SuccessProperties= {
   buttonMessage: string;
   open:any;
   setOpen:any;
+  navigateTo:any
 }
 
 export default function SuccessDialog(props:SuccessProperties) {
-
+  const navigate=useNavigate();
   return (
     <Dialog open={props.open} onClose={props.setOpen} className="relative z-10">
       <DialogBackdrop
@@ -45,7 +47,12 @@ export default function SuccessDialog(props:SuccessProperties) {
               <button
                 type="button"
                 data-autofocus
-                onClick={() => props.setOpen(false)}
+                onClick={() => {
+                  props.setOpen(false)
+                  if(props.navigateTo){
+                    navigate(props.navigateTo)
+                  }
+                }}
                 className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto"
               >
                 {props.buttonMessage}

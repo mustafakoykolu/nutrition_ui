@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "../Helpers/AuthHelper";
 import { RegisterType } from "../Models/RegisterType";
 import SuccessDialog from "../Dialogs/SuccessDialog";
@@ -9,7 +9,8 @@ async function registerUser(
   auth: any,
   setShowSuccessDialog: any,
   setShowErrorDialog: any,
-  setErrMessage: any
+  setErrMessage: any,
+  navigate:any
 ) {
   event.preventDefault();
   var registerUser: RegisterType = {
@@ -28,6 +29,7 @@ async function registerUser(
 
 function RegisterPage() {
   const auth = useAuth();
+  const navigate = useNavigate();
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [errMessage, setErrMessage] = useState(
@@ -41,6 +43,7 @@ function RegisterPage() {
         buttonMessage="tamam"
         open={showSuccessDialog}
         setOpen={setShowSuccessDialog}
+        navigateTo={"/Giris"}
       />
       <ErrorDialog
         header="Kayıt işlemi sırasında bir hata meydana gelmiştir."
@@ -49,7 +52,7 @@ function RegisterPage() {
         open={showErrorDialog}
         setOpen={setShowErrorDialog}
       />
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 p-20 bg-white m-20 shadow-xl rounded-2xl">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
@@ -69,7 +72,8 @@ function RegisterPage() {
                 auth,
                 setShowSuccessDialog,
                 setShowErrorDialog,
-                setErrMessage
+                setErrMessage,
+                navigate
               );
             }}
             className="space-y-6"

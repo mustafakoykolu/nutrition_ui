@@ -6,7 +6,7 @@ import PreNavbar from "../Layouts/PreNavbar";
 
 function PreRoutes() {
   return (
-    <div id="pre-page-container" className="bg-slate-200">
+    <div id="pre-page-container">
       <PreNavbar/>
       <Routes>
         <Route index path="/" element={<Home />} />
