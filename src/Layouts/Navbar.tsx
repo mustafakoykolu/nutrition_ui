@@ -9,12 +9,14 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../Helpers/AuthHelper";
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
+  const auth = useAuth();
   const location = useLocation();
   const navigationTabs = [
     { name: "Dashboard", href: "/", current: location.pathname === "/" },
@@ -34,6 +36,10 @@ export default function Navbar() {
       current: location.pathname === "/alisveris-listem",
     },
   ];
+
+  function logout(): void {
+    auth.logout();
+  }
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -128,6 +134,7 @@ export default function Navbar() {
                 <MenuItem>
                 <Link
                     to={"#"}
+                    onClick={logout}
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                   >
                     Çıkış Yap
