@@ -1,5 +1,5 @@
-import Comments from "../components/SocialMedia/Comments";
-import Post from "../components/SocialMedia/Post";
+import Comments from "../../components/SocialMedia/Comments";
+import Post from "../../components/SocialMedia/Post";
 
 function SocialMediaPost() {
   return (

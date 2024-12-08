@@ -4,7 +4,7 @@ import nutritionist from "../../assets/Images/nutritionist.png";
 export default function SocialMediaCard() {
     const navigate = useNavigate()
   return (
-    <div className="flex justify-center p-5 px-20 shadow-xl rounded-3xl bg-white mx-20 my-20 ">
+    <div className="flex justify-center py-5 px-20 shadow-xl rounded-3xl bg-white mx-20 my-20 ">
       <div
         className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden bg-white rounded-b "
         style={{ backgroundImage: "url(" + nutritionist + ")" }}
