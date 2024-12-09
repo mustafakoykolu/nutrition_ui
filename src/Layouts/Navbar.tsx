@@ -18,6 +18,13 @@ function classNames(...classes: any[]) {
 export default function Navbar() {
   const auth = useAuth();
   const location = useLocation();
+  const foodListSubMenu = [
+    {
+      name: "Besin",
+      href: "/yemek-listem/besinler",
+      current: location.pathname === "/yemek-listem/besinler",
+    },
+  ];
   const navigationTabs = [
     { name: "Dashboard", href: "/", current: location.pathname === "/" },
     {
@@ -29,6 +36,7 @@ export default function Navbar() {
       name: "Yemek Listem",
       href: "/yemek-listem",
       current: location.pathname === "/yemek-listem",
+      subMenu: foodListSubMenu,
     },
     {
       name: "Alışveriş Listem",
@@ -37,7 +45,11 @@ export default function Navbar() {
     },
   ];
   const navigationEndTabs = [
-    { name: "Sosyal", href: "/sosyal-medyam", current: location.pathname === "/sosyal-medyam" },
+    {
+      name: "Sosyal",
+      href: "/sosyal-medyam",
+      current: location.pathname === "/sosyal-medyam",
+    },
   ];
 
   function logout(): void {
@@ -73,40 +85,83 @@ export default function Navbar() {
             </div>
             <div className="hidden sm:ml-6 sm:block">
               <div className="flex space-x-4">
-                {navigationTabs.map((item) => (
-                  <Link
-                    key={item.name}
-                    aria-current={item.current ? "page" : undefined}
-                    className={classNames(
-                      item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "rounded-md px-3 py-2 text-sm font-medium"
-                    )}
-                    to={item.href}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+                {navigationTabs.map((item) => {
+                  if (item.subMenu) {
+                    return (
+                      <Menu as="div" className="relative ml-3">
+                        <div
+                          className={classNames(
+                            item.current
+                              ? "bg-gray-900 text-white"
+                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            "rounded-md px-3 py-2 text-sm font-medium"
+                          )}
+                        >
+                          <MenuButton className="relative flex rounded-full text-sm :outline-none">
+                            <span className="absolute -inset-1.5" />
+                            {item.name}
+
+                          </MenuButton>
+                        </div>
+                        <MenuItems
+                          transition
+                          className="absolute  z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                        >
+                          
+                          {
+                            foodListSubMenu.map((subMenu)=>
+                              <MenuItem>
+                              <Link
+                              to={subMenu.href}
+                              className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
+                            >
+                              {subMenu.name}
+                            </Link>
+                          </MenuItem>
+                            )
+                          }
+                            
+                       
+                        </MenuItems>
+                      </Menu>
+                    );
+                  } else {
+                    return (
+                      <Link
+                        key={item.name}
+                        aria-current={item.current ? "page" : undefined}
+                        className={classNames(
+                          item.current
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                        to={item.href}
+                      >
+                        {item.name}
+                      </Link>
+                    );
+                  }
+                })}
               </div>
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             {navigationEndTabs.map((item) => (
-                  <Link
-                    key={item.name}
-                    aria-current={item.current ? "page" : undefined}
-                    className={classNames(
-                      item.current
-                        ? "bg-gray-900 text-white"
-                        : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                      "rounded-md px-3 py-2 text-sm font-medium"
-                    )}
-                    to={item.href}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+              <Link
+                key={item.name}
+                aria-current={item.current ? "page" : undefined}
+                className={classNames(
+                  item.current
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                  "rounded-md px-3 py-2 text-sm font-medium"
+                )}
+                to={item.href}
+              >
+                {item.name}
+              </Link>
+            ))}
             <button
               type="button"
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -135,14 +190,14 @@ export default function Navbar() {
               >
                 <MenuItem>
                   <Link
-                    to={"#"}
+                    to={"/profilim"}
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                   >
                     Profilim
                   </Link>
                 </MenuItem>
                 <MenuItem>
-                <Link
+                  <Link
                     to={"#"}
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
                   >
@@ -150,7 +205,7 @@ export default function Navbar() {
                   </Link>
                 </MenuItem>
                 <MenuItem>
-                <Link
+                  <Link
                     to={"#"}
                     onClick={logout}
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"

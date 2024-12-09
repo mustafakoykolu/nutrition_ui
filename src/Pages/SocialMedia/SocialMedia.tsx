@@ -14,7 +14,6 @@ function SocialMedia() {
       </div>
       {Array(10)
         .fill(1)
-        .map((x, y) => x + y)
         .map(() => (
           <SocialMediaCard />
         ))}
