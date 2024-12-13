@@ -22,8 +22,9 @@ async function registerUser(
   if (response.status === 200) {
     setShowSuccessDialog(true);
   } else {
+    debugger;
     setShowErrorDialog(true);
-    setErrMessage(response.data);
+    setErrMessage(response.data.message);
   }
 }
 

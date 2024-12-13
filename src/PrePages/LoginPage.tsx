@@ -14,12 +14,16 @@ async function loginUser(
     email: event.target[0].value,
     password: event.target[1].value,
   };
+  debugger;
+
   var response = await auth.login(registerUser);
+  debugger;
+
   if (response.status === 200) {
     auth.authorizeLoginUser(response.data);
   } else {
     setShowErrorDialog(true);
-    setErrMessage(response.data);
+    setErrMessage(response.data.message);
   }
 }
 

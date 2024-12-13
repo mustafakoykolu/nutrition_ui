@@ -26,21 +26,19 @@ export default function FoodPage() {
         </div>
       </div>
       <div id="body">
-        <div  className="flex justify-between">
-        {Array(5).fill(1)
-        .map(() => (
-          <FoodCard />
-        ))}
-        
-        </div>
-        <div  className="flex justify-between">
-        {Array(5).fill(1)
-        .map(() => (
-          <FoodCard />
-        ))}
+        <div className="flex flex-wrap justify-center pb-10">
+          {Array(5)
+            .fill(1)
+            .map(() => (
+              <FoodCard />
+            ))}
+          {Array(5)
+            .fill(1)
+            .map(() => (
+              <FoodCard />
+            ))}
         </div>
       </div>
-     
     </div>
   );
 }
