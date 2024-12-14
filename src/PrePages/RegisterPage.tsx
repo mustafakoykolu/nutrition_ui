@@ -1,18 +1,29 @@
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useAuth } from "../Helpers/AuthHelper";
 import { RegisterType } from "../Models/RegisterType";
 import SuccessDialog from "../Dialogs/SuccessDialog";
 import { useState } from "react";
 import ErrorDialog from "../Dialogs/ErrorDialog";
+
+function registerValidation(pwd:string, repeatPwd:string){
+    if(pwd===repeatPwd){
+      return true
+    }
+    else return false
+}
 async function registerUser(
   event: any,
   auth: any,
   setShowSuccessDialog: any,
   setShowErrorDialog: any,
   setErrMessage: any,
-  navigate:any
 ) {
   event.preventDefault();
+  if(!registerValidation(event.target[2].value,event.target[3].value)){
+    setShowErrorDialog(true);
+    setErrMessage("Şifre ve tekrar girdiğiniz şifre eşleşmemektedir!");
+    return
+  }
   var registerUser: RegisterType = {
     username: event.target[0].value,
     email: event.target[1].value,
@@ -22,7 +33,6 @@ async function registerUser(
   if (response.status === 200) {
     setShowSuccessDialog(true);
   } else {
-    debugger;
     setShowErrorDialog(true);
     setErrMessage(response.data.message);
   }
@@ -30,7 +40,6 @@ async function registerUser(
 
 function RegisterPage() {
   const auth = useAuth();
-  const navigate = useNavigate();
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [errMessage, setErrMessage] = useState(
@@ -74,7 +83,6 @@ function RegisterPage() {
                 setShowSuccessDialog,
                 setShowErrorDialog,
                 setErrMessage,
-                navigate
               );
             }}
             className="space-y-6"
