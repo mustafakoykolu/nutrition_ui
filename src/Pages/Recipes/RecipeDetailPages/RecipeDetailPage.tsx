@@ -1,34 +1,30 @@
-import ananas from "../../assets/Images/ananas.png";
+import { useState } from "react";
+import tavukPilavImg from "../../../assets/Images/tavukpilav.png";
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
 } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { Link } from "react-router-dom";
-import FoodDetailValue from "./FoodDetailValue";
-import { useState } from "react";
-import FoodBenefits from "./FoodBenefits";
-import FoodHistory from "./FoodHistory";
+import RecipeDetailValue from "./RecipeDetailValue";
+import RecipeBenefits from "./RecipeBenefits";
+import RecipeHistory from "./RecipeHistory";
+import Recipe from "./Recipe";
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function FoodDetailPage() {
-  const [currentMenu, setCurrentMenu] = useState("foodValue");
+export default function RecipeDetailPage() {
+  const [currentMenu, setCurrentMenu] = useState("recipe");
 
   return (
-    <div id="myprofile-page-container">
+    <div id="food-detail-page-container">
       <div className="my-20 w-4/6">
         <img
-          alt="food image"
           className="absolute inset-x-0 shadow-xl bg-white h-80 mx-auto  rounded-full"
-          src={ananas}
+          src={tavukPilavImg}
         />
       </div>
       <div className="h-40 bg-gray-800 w-4/6  mx-auto "></div>
@@ -36,7 +32,7 @@ export default function FoodDetailPage() {
       <div className="w-full flex justify-center">
         <div className="max-w rounded overflow-hidden bg-white shadow-lg w-4/6  ">
           <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2 text-center">Ananas</div>
+            <div className="font-bold text-xl mb-2 text-center">Tavuk Pilav</div>
             <div className="w-6/6 mx-auto mb-5">
               <Disclosure as="nav" className="bg-gray-800">
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 flex sm:justify-center justify-between">
@@ -56,6 +52,18 @@ export default function FoodDetailPage() {
                         />
                       </DisclosureButton>
                     </div>
+                    <Link
+                      key={"recipe"}
+                      className={classNames(
+                        currentMenu === "recipe"
+                          ? "sm:hidden bg-gray-900 text-white"
+                          : "hidden text-gray-300 hover:bg-gray-700 hover:text-white",
+                        "rounded-md px-3 py-2 text-sm font-medium"
+                      )}
+                      to={"#"}
+                    >
+                      {"Tarif"}
+                    </Link>
                     <Link
                       key={"foodValue"}
                       className={classNames(
@@ -94,6 +102,19 @@ export default function FoodDetailPage() {
                       </Link>
                     <div className=" hidden sm:ml-6 sm:block flex items-center justify-center">
                       <div className="flex justify-between space-x-4">
+                      <Link
+                          key={"recipe"}
+                          className={classNames(
+                            currentMenu === "recipe"
+                              ? "bg-gray-900 text-white"
+                              : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                            "rounded-md px-3 py-2 text-sm font-medium"
+                          )}
+                          to={"#"}
+                          onClick={() => setCurrentMenu("recipe")}
+                        >
+                          {"Tarifi"}
+                        </Link>
                         <Link
                           key={"foodValue"}
                           className={classNames(
@@ -193,9 +214,10 @@ export default function FoodDetailPage() {
                 </DisclosurePanel>
               </Disclosure>
             </div>
-            {currentMenu === "foodValue" && <FoodDetailValue />}
-            {currentMenu === "benefits" && <FoodBenefits />}
-            {currentMenu === "history" && <FoodHistory />}
+            {currentMenu === "recipe" && <Recipe />}
+            {currentMenu === "foodValue" && <RecipeDetailValue />}
+            {currentMenu === "benefits" && <RecipeBenefits />}
+            {currentMenu === "history" && <RecipeHistory />}
           </div>
         </div>
       </div>

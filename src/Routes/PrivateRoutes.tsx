@@ -9,8 +9,10 @@ import SocialMediaPost from "../Pages/SocialMedia/SocialMediaPost";
 import CreateAPost from "../Pages/SocialMedia/CreateAPost";
 import MyProfile from "../Pages/Profile/MyProfile";
 import FoodPage from "../Pages/Food/FoodPage";
-import FoodDetailPage from "../Pages/Food/FoodDetailPage";
-import AddNewFood from "../Pages/Food/AddNewFood";
+import FoodDetailPage from "../Pages/Food/FoodDetailPages/FoodDetailPage";
+import AddNewFood from "../Pages/Food/AddFoodPages/AddNewFood";
+import Recipes from "../Pages/Recipes/Recipes";
+import RecipeDetailPage from "../Pages/Recipes/RecipeDetailPages/RecipeDetailPage";
 function PrivateRoutes() {
   return (
     <div id="page-container">
@@ -20,10 +22,12 @@ function PrivateRoutes() {
         <Route path="/alisveris-listem" element={<ShoppingList />} />
         <Route path="/kalori-takip" element={<Calory />} />
         <Route path="/yemek-listem" element={<FoodList />} />
+        <Route path="/yemek-listem/yemek-tarifleri" element={<Recipes />} />
+        <Route path="/yemek-listem/yemek-tarifleri/detay" element={<RecipeDetailPage />} />
+
         <Route path="/yemek-listem/besinler" element={<FoodPage />} />
         <Route path="/yemek-listem/besin-detay" element={<FoodDetailPage/>} />
         <Route path="/yemek-listem/yeni-besin-ekle" element={<AddNewFood />} />
-
         <Route path="/sosyal-medyam" element={<SocialMedia />} />
         <Route path="/sosyal-medyam/gonderi" element={<SocialMediaPost/>} />
         <Route path="/sosyal-medyam/gonderi-olustur" element={<CreateAPost/>} />

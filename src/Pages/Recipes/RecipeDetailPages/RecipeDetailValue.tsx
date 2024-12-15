@@ -1,8 +1,7 @@
-export default function FoodDetailValue() {
+export default function RecipeDetailValue() {
   return (
     <div id="food-values">
-      <h1 className="font-bold text-xl mb-3">Ananasın Besin Değerleri</h1>
-
+      <h1 className="font-bold text-xl mb-3">Tavuk Pilav Besin Değerleri</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="font-bold">Kalori:</div>
         <div>150 kcal</div>

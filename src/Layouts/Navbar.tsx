@@ -24,6 +24,11 @@ export default function Navbar() {
       href: "/yemek-listem/besinler",
       current: location.pathname === "/yemek-listem/besinler",
     },
+    {
+      name: "Yemek Tarifleri",
+      href: "/yemek-listem/yemek-tarifleri",
+      current: location.pathname === "/yemek-listem/yemek-tarifleri",
+    },
   ];
   const navigationTabs = [
     { name: "Dashboard", href: "/", current: location.pathname === "/" },
