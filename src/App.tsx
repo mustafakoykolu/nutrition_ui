@@ -3,20 +3,16 @@ import "./App.css";
 import PrivateRoutes from "./Routes/PrivateRoutes";
 import PreRoutes from "./Routes/PreRoutes";
 import { useAuth } from "./Helpers/AuthHelper";
+import AxiosInterceptor from "./AxiosInterceptor";
 
 
 
 function App() {
-  let login =false;
-  const auth = useAuth()    
-  if(!(auth.token === "")) 
-  {
-    login= true;
-  }
-  
+  const auth = useAuth()   
+  AxiosInterceptor(auth.token) 
   return (
     <>
-    {login ? <PrivateRoutes/>:<PreRoutes/>}
+    {auth.token !=="" ? <PrivateRoutes/>:<PreRoutes/>}
     </>
   );
 }

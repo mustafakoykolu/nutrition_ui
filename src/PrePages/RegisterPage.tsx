@@ -4,25 +4,25 @@ import { RegisterType } from "../Models/RegisterType";
 import SuccessDialog from "../Dialogs/SuccessDialog";
 import { useState } from "react";
 import ErrorDialog from "../Dialogs/ErrorDialog";
+import { LoadingCarousel } from "../Layouts/LoadingCarousel";
 
-function registerValidation(pwd:string, repeatPwd:string){
-    if(pwd===repeatPwd){
-      return true
-    }
-    else return false
+function registerValidation(pwd: string, repeatPwd: string) {
+  if (pwd === repeatPwd) {
+    return true;
+  } else return false;
 }
 async function registerUser(
   event: any,
   auth: any,
   setShowSuccessDialog: any,
   setShowErrorDialog: any,
-  setErrMessage: any,
+  setErrMessage: any
 ) {
   event.preventDefault();
-  if(!registerValidation(event.target[2].value,event.target[3].value)){
+  if (!registerValidation(event.target[2].value, event.target[3].value)) {
     setShowErrorDialog(true);
     setErrMessage("Şifre ve tekrar girdiğiniz şifre eşleşmemektedir!");
-    return
+    return;
   }
   var registerUser: RegisterType = {
     username: event.target[0].value,
@@ -45,6 +45,8 @@ function RegisterPage() {
   const [errMessage, setErrMessage] = useState(
     "Kayıt işlemi sırasında bir hata meydana gelmiştir."
   );
+  const [loading,setLoading] = useState(false)
+
   return (
     <>
       <SuccessDialog
@@ -62,6 +64,7 @@ function RegisterPage() {
         open={showErrorDialog}
         setOpen={setShowErrorDialog}
       />
+      {loading && <LoadingCarousel />}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 p-20 bg-white m-20 shadow-xl rounded-2xl">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -76,14 +79,16 @@ function RegisterPage() {
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
-            onSubmit={(event) => {
+            onSubmit={async (event) => {
+              setLoading(true)
               registerUser(
                 event,
                 auth,
                 setShowSuccessDialog,
                 setShowErrorDialog,
-                setErrMessage,
+                setErrMessage
               );
+              setLoading(false)
             }}
             className="space-y-6"
           >

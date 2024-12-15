@@ -28,7 +28,7 @@ async function resetPassword(
 
 export default function ForgotPassword() {
   const auth = useAuth();
-  const [showErrorDialog, setShowErrorDialog] = useState(true);
+  const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [errMessage, setErrMessage] = useState(
     "Kullanıcı adınız veya email adresiniz sistemimizde kayıtlı değildir! Üye olarak devam edebilirsiniz."
   );

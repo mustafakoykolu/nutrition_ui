@@ -10,6 +10,7 @@ import CreateAPost from "../Pages/SocialMedia/CreateAPost";
 import MyProfile from "../Pages/Profile/MyProfile";
 import FoodPage from "../Pages/Food/FoodPage";
 import FoodDetailPage from "../Pages/Food/FoodDetailPage";
+import AddNewFood from "../Pages/Food/AddNewFood";
 function PrivateRoutes() {
   return (
     <div id="page-container">
@@ -21,6 +22,7 @@ function PrivateRoutes() {
         <Route path="/yemek-listem" element={<FoodList />} />
         <Route path="/yemek-listem/besinler" element={<FoodPage />} />
         <Route path="/yemek-listem/besin-detay" element={<FoodDetailPage/>} />
+        <Route path="/yemek-listem/yeni-besin-ekle" element={<AddNewFood />} />
 
         <Route path="/sosyal-medyam" element={<SocialMedia />} />
         <Route path="/sosyal-medyam/gonderi" element={<SocialMediaPost/>} />

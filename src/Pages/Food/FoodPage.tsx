@@ -1,6 +1,8 @@
 import FoodCard from "./FoodCard";
+import { useNavigate } from "react-router-dom";
 
 export default function FoodPage() {
+  const navigate = useNavigate()
   return (
     <div id="food-page-container">
       <div id="header" className="flex mt-10">
@@ -18,7 +20,7 @@ export default function FoodPage() {
               Ara
             </button>
           </div>
-          <button className="ml-10 px-5 py-2.5 bg-gray-800 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-xl shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex">
+          <button className="ml-10 px-5 py-2.5 bg-gray-800 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-xl shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex" onClick={()=> navigate("/yemek-listem/yeni-besin-ekle")}>
             <span className="px-2 py-px text-white text-base font-semibold leading-relaxed">
               Yeni Besin Ekle
             </span>

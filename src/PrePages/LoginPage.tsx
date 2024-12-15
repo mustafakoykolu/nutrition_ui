@@ -3,6 +3,7 @@ import { LoginType } from "../Models/LoginType";
 import { useAuth } from "../Helpers/AuthHelper";
 import ErrorDialog from "../Dialogs/ErrorDialog";
 import { useState } from "react";
+import { LoadingCarousel } from "../Layouts/LoadingCarousel";
 async function loginUser(
   event: any,
   auth: any,
@@ -11,8 +12,12 @@ async function loginUser(
 ) {
   event.preventDefault();
   var loginInfo: LoginType = {
-    email: event.target[0].value.includes("@") ? event.target[0].value:undefined,
-    username:!event.target[0].value.includes("@") ? event.target[0].value:undefined,
+    email: event.target[0].value.includes("@")
+      ? event.target[0].value
+      : undefined,
+    username: !event.target[0].value.includes("@")
+      ? event.target[0].value
+      : undefined,
     password: event.target[1].value,
   };
   var response = await auth.login(loginInfo);
@@ -26,6 +31,7 @@ async function loginUser(
 
 function LoginPage() {
   const auth = useAuth();
+  const [loading, setLoading] = useState(false);
   const [showErrorDialog, setShowErrorDialog] = useState(false);
   const [errMessage, setErrMessage] = useState(
     "Lütfen daha sonra tekrar deneyiniz."
@@ -39,23 +45,25 @@ function LoginPage() {
         open={showErrorDialog}
         setOpen={setShowErrorDialog}
       />
+      {loading && <LoadingCarousel />}
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 p-20 bg-white m-20 shadow-xl rounded-2xl">
+        <img
+          alt="Your Company"
+          src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
+          className="mx-auto h-10 w-auto"
+        />
 
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            alt="Your Company"
-            src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-            className="mx-auto h-10 w-auto"
-          />
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             Beslenme Dünyasına Giriş Yap
           </h2>
         </div>
-
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form
-            onSubmit={(event) => {
-              loginUser(event, auth, setShowErrorDialog, setErrMessage);
+            onSubmit={async (event) => {
+              setLoading(true);
+              await loginUser(event, auth, setShowErrorDialog, setErrMessage);
+              setLoading(false);
             }}
             className="space-y-6"
           >

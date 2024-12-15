@@ -91,7 +91,6 @@ async function apiLogin(loginRequest: LoginType) {
         url: process.env.REACT_APP_API_URL+'/auth/login',
         data: loginRequest, 
         headers: {
-         // 'Authorization': `bearer ${token}`,
         'Content-Type': 'application/json'
         }, 
       })
@@ -103,7 +102,6 @@ async function apiRegister(registerRequest: RegisterType) {
       url: process.env.REACT_APP_API_URL+'/auth/register',
       data: registerRequest, 
       headers: {
-       // 'Authorization': `bearer ${token}`,
       'Content-Type': 'application/json'
       }, 
     })
@@ -115,7 +113,6 @@ async function apiResetPassword(resetPasswordRequest: ResetPasswordType) {
       url: process.env.REACT_APP_API_URL+'/auth/ResetPassword',
       data: resetPasswordRequest, 
       headers: {
-       // 'Authorization': `bearer ${token}`,
       'Content-Type': 'application/json'
       }, 
     })
