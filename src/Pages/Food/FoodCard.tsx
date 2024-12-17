@@ -31,7 +31,7 @@ export default function FoodCard() {
           #Protein
         </span>
         <button className="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-white ml-auto mb-2 hover:bg-blue-500" onClick={()=>{
-          navigate("/yemek-listem/besin-detay")
+          navigate("/besin-kalorileri/detay")
         }}>
           <span>detay</span>
         </button>

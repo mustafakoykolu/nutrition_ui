@@ -20,34 +20,47 @@ export default function Navbar() {
   const location = useLocation();
   const foodListSubMenu = [
     {
-      name: "Besin",
-      href: "/yemek-listem/besinler",
-      current: location.pathname === "/yemek-listem/besinler",
-    },
-    {
       name: "Yemek Tarifleri",
-      href: "/yemek-listem/yemek-tarifleri",
-      current: location.pathname === "/yemek-listem/yemek-tarifleri",
-    },
-  ];
-  const navigationTabs = [
-    { name: "Dashboard", href: "/", current: location.pathname === "/" },
-    {
-      name: "Kalori Takip",
-      href: "/kalori-takip",
-      current: location.pathname === "/kalori-takip",
+      href: "/yemek-tarifleri",
+      current: location.pathname === "/yemek-tarifleri",
     },
     {
       name: "Yemek Listem",
       href: "/yemek-listem",
       current: location.pathname === "/yemek-listem",
+    },
+  ];
+  const caloryListSubMenu = [
+    {
+      name: "Kalori Durumum",
+      href: "#",
+      current: location.pathname === "asd",
+    },
+    {
+      name: "Besin Kalorileri",
+      href: "/besin-kalorileri",
+      current: location.pathname === "/besin-kalorileri",
+    },
+  ];
+  const navigationTabs = [
+    { name: "Dashboard", href: "/", current: location.pathname === "/" },
+    {
+      name: "Yemek",
+      href: "/yemek",
+      current: location.pathname === "/yemek",
       subMenu: foodListSubMenu,
     },
     {
-      name: "Alışveriş Listem",
-      href: "alisveris-listem",
-      current: location.pathname === "/alisveris-listem",
+      name: "Kalori Takip",
+      href: "/kalori-takip",
+      current: location.pathname === "/kalori-takip",
+      subMenu: caloryListSubMenu,
     },
+    // {
+    //   name: "Alışveriş Listem",
+    //   href: "alisveris-listem",
+    //   current: location.pathname === "/alisveris-listem",
+    // },
   ];
   const navigationEndTabs = [
     {
@@ -83,7 +96,7 @@ export default function Navbar() {
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div className="flex shrink-0 items-center">
               <img
-                alt="Nutrition Logo"
+                alt="Logo"
                 src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
                 className="h-8 w-auto"
               />
@@ -105,28 +118,22 @@ export default function Navbar() {
                           <MenuButton className="relative flex rounded-full text-sm :outline-none">
                             <span className="absolute -inset-1.5" />
                             {item.name}
-
                           </MenuButton>
                         </div>
                         <MenuItems
                           transition
                           className="absolute  z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black/5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                         >
-                          
-                          {
-                            foodListSubMenu.map((subMenu)=>
-                              <MenuItem>
+                          {item.subMenu.map((subMenu) => (
+                            <MenuItem>
                               <Link
-                              to={subMenu.href}
-                              className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
-                            >
-                              {subMenu.name}
-                            </Link>
-                          </MenuItem>
-                            )
-                          }
-                            
-                       
+                                to={subMenu.href}
+                                className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
+                              >
+                                {subMenu.name}
+                              </Link>
+                            </MenuItem>
+                          ))}
                         </MenuItems>
                       </Menu>
                     );

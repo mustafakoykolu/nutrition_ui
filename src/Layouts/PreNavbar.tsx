@@ -14,22 +14,22 @@ import {
     const location = useLocation();
     const pathName= location.pathname.toLowerCase();
     const navigationTabs = [
-      { name: "Nutrition Nedir", href: "/", current: pathName === "/" },
-      {
-        name: "Kalori Takibi",
-        href: "/kalori-takip",
-        current: pathName === "/kalori-takip",
-      },
-      {
-        name: "Yemek Listesi",
-        href: "/yemek-listem",
-        current: pathName === "/yemek-listem",
-      },
-      {
-        name: "Alışveriş Listesi",
-        href: "alisveris-listem",
-        current: pathName === "/alisveris-listem",
-      },
+      { name: "Fit Lezzet Nedir", href: "/", current: pathName === "/" },
+      // {
+      //   name: "Kalori Takibi",
+      //   href: "/kalori-takip",
+      //   current: pathName === "/kalori-takip",
+      // },
+      // {
+      //   name: "Yemek Listesi",
+      //   href: "/yemek-listem",
+      //   current: pathName === "/yemek-listem",
+      // },
+      // {
+      //   name: "Alışveriş Listesi",
+      //   href: "alisveris-listem",
+      //   current: pathName === "/alisveris-listem",
+      // },
     ];
     const navigationEndTabs = [
         { name: "Giriş Yap", href: "/Giris", current: pathName === "/giris" },
@@ -62,7 +62,7 @@ import {
             <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
               <div className="flex shrink-0 items-center">
                 <img
-                  alt="Nutrition Logo"
+                  alt="Fit Lezzet Logo"
                   src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
                   className="h-8 w-auto"
                 />

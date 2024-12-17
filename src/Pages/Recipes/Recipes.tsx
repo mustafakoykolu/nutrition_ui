@@ -20,7 +20,7 @@ export default function Recipes() {
               Ara
             </button>
           </div>
-          <button className="ml-10 px-5 py-2.5 bg-gray-800 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-xl shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex" onClick={()=> navigate("/yemek-listem/yeni-besin-ekle")}>
+          <button className="ml-10 px-5 py-2.5 bg-gray-800 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-xl shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex" onClick={()=> navigate("/yemek-tarifleri/ekle")}>
             <span className="px-2 py-px text-white text-base font-semibold leading-relaxed">
               Yeni Yemek Tarifi Ekle
             </span>

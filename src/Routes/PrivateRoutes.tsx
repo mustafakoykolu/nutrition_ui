@@ -13,25 +13,35 @@ import FoodDetailPage from "../Pages/Food/FoodDetailPages/FoodDetailPage";
 import AddNewFood from "../Pages/Food/AddFoodPages/AddNewFood";
 import Recipes from "../Pages/Recipes/Recipes";
 import RecipeDetailPage from "../Pages/Recipes/RecipeDetailPages/RecipeDetailPage";
+import AddNewRecipe from "../Pages/Recipes/AddRecipePages/AddNewRecipe";
 function PrivateRoutes() {
   return (
     <div id="page-container">
-      <Navbar/>
+      <Navbar />
       <Routes>
         <Route index path="/" element={<Dashboard />} />
         <Route path="/alisveris-listem" element={<ShoppingList />} />
         <Route path="/kalori-takip" element={<Calory />} />
-        <Route path="/yemek-listem" element={<FoodList />} />
-        <Route path="/yemek-listem/yemek-tarifleri" element={<Recipes />} />
-        <Route path="/yemek-listem/yemek-tarifleri/detay" element={<RecipeDetailPage />} />
 
-        <Route path="/yemek-listem/besinler" element={<FoodPage />} />
-        <Route path="/yemek-listem/besin-detay" element={<FoodDetailPage/>} />
-        <Route path="/yemek-listem/yeni-besin-ekle" element={<AddNewFood />} />
+        {/*Yemek Tarifleri*/}
+        <Route path="/yemek-tarifleri" element={<Recipes />} />
+        <Route path="/yemek-tarifleri/detay" element={<RecipeDetailPage />} />
+        {/*Yemek Tarifleri ekle*/}
+        <Route path="/yemek-tarifleri/ekle" element={<AddNewRecipe />} />
+
+        {/*Besin Kalori Takip*/}
+        <Route path="/besin-kalorileri" element={<FoodPage />} />
+        <Route path="/besin-kalorileri/ekle" element={<AddNewFood />} />
+        <Route path="/besin-kalorileri/detay" element={<FoodDetailPage />} />
+
+        {/*Sosyal Medya*/}
         <Route path="/sosyal-medyam" element={<SocialMedia />} />
-        <Route path="/sosyal-medyam/gonderi" element={<SocialMediaPost/>} />
-        <Route path="/sosyal-medyam/gonderi-olustur" element={<CreateAPost/>} />
-        <Route path="/profilim" element={<MyProfile/>} />
+        <Route path="/sosyal-medyam/gonderi" element={<SocialMediaPost />} />
+        <Route
+          path="/sosyal-medyam/gonderi-olustur"
+          element={<CreateAPost />}
+        />
+        <Route path="/profilim" element={<MyProfile />} />
       </Routes>
     </div>
   );

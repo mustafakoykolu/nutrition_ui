@@ -28,7 +28,7 @@ export default function FoodCard() {
           1 Porsiyon = 150g
         </span>
         <button className="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-white ml-auto mb-2 hover:bg-blue-500" onClick={()=>{
-          navigate("/yemek-listem/yemek-tarifleri/detay")
+          navigate("/yemek-tarifleri/detay")
         }}>
           <span>detay</span>
         </button>
