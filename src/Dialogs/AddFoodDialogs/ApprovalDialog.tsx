@@ -4,6 +4,7 @@ import { CheckIcon } from '@heroicons/react/24/outline'
 type SuccessProperties= {
   open:any;
   setOpen:any;
+  submitFunction?:any;
 }
 
 export default function ApprovalDialog(props:SuccessProperties) {
@@ -43,6 +44,7 @@ export default function ApprovalDialog(props:SuccessProperties) {
                 data-autofocus
                 onClick={() => {
                   props.setOpen(false)
+                  props.submitFunction();
                 }}
                 className="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 sm:ml-3 sm:w-auto"
               >

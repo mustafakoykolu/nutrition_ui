@@ -7,22 +7,17 @@ import "draft-js/dist/Draft.css";
 import clsx from "clsx";
 type Props = {
     currentMenu: string;
+    editorState:any;
+    setEditorState: any;
   };
 export default function AddFoodHistory(props:Props) {
-    const [editorState, setEditorState] = useState(() =>
-        EditorState.createEmpty()
-      );
       const onHandleKeyBindings = (e: any) => {
         if (e.keyCode === 9) {
-          setEditorState(RichUtils.onTab(e, editorState, 4));
+          props.setEditorState(RichUtils.onTab(e, props.editorState, 4));
         } else {
           return getDefaultKeyBinding(e);
         }
       };
-      useEffect(() => {
-        const htmlContent = stateToHTML(editorState.getCurrentContent());
-        console.log(htmlContent);
-      }, [editorState]);
       function uploadImageCallBack(file: any) {
         return new Promise((resolve, reject) => {
           const xhr = new XMLHttpRequest(); // eslint-disable-line no-undef
@@ -47,11 +42,11 @@ export default function AddFoodHistory(props:Props) {
           className={clsx({ hidden: props.currentMenu !== "history" })}
         >
           <Editor
-            editorState={editorState}
+            editorState={props.editorState}
             toolbarClassName="toolbarclassName="
             wrapperClassName="wrapperclassName="
             editorClassName="editorclassName="
-            onEditorStateChange={setEditorState}
+            onEditorStateChange={props.setEditorState}
             onTab={onHandleKeyBindings}
             toolbar={{
               image: {

@@ -1,0 +1,42 @@
+export interface FoodType {
+    id:number;
+    name: string;
+    kCal: number;
+    protein: number;
+    fat: number;
+    carbs: number;
+    fiber: number;
+    sugar: number;
+    salt: number;
+    iron: number;
+    vitaminA: number;
+    vitaminC: number;
+    vitaminD: number;
+    vitaminE: number;
+    vitaminK: number;
+    vitaminB1: number;
+    vitaminB2: number;
+    vitaminB3: number;
+    vitaminB5: number;
+    vitaminB6: number;
+    vitaminB7: number;
+    vitaminB9: number;
+    vitaminB12: number;
+    calcium: number;
+    phosphorus: number;
+    magnesium: number;
+    zinc: number;
+    copper: number;
+    manganese: number;
+    selenium: number;
+    potassium: number;
+    sodium: number;
+    cholesterol: number;
+    caffeine: number;
+    imagePath: string;
+    benefits: string;
+    history: string;
+    portion: number;
+    portionUnit: string;
+  }
+  

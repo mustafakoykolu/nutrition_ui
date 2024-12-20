@@ -6,6 +6,5 @@ export default function AxiosInterceptor(token:string){
 }
 // request interceptor
 axios.interceptors.request.use((config)=>{
-    config.headers.Authorization=`Bearer ${_token}`
     return config;
 })

@@ -12,6 +12,13 @@ import AddFoodHistory from "./AddFoodHistory";
 import CancelDialog from "../../../Dialogs/AddFoodDialogs/CancelDialog";
 import ApprovalDialog from "../../../Dialogs/AddFoodDialogs/ApprovalDialog";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { EditorState } from "draft-js";
+import { stateToHTML } from "draft-js-export-html";
+import axios from "axios";
+import { useAuth } from "../../../Helpers/AuthHelper";
+import SuccessDialog from "../../../Dialogs/SuccessDialog";
+import ErrorDialog from "../../../Dialogs/ErrorDialog";
+import { LoadingCarousel } from "../../../Layouts/LoadingCarousel";
 
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
@@ -21,27 +28,92 @@ export default function AddNewFood() {
   const [showCancelDialog, setShowCancelDialog] = useState(false);
   const [showApprovalDialog, setShowApprovalDialog] = useState(false);
   const [currentMenu, setCurrentMenu] = useState("foodValue");
-  const [file, setFile] = useState<string>(basket);
+  const [foodName,setFoodName]=useState("")
+  const [file, setFile] = useState(null);
+  const [preview, setPreview] = useState<string>(basket);
+  const [successOpen,setSuccessOpen] = useState(false)
+  const [errOpen,setErrOpen] = useState(false)
+  const [loading,setLoading]=useState(false)
+
+  const [benefitsEditorState, setBenefitsEditorState] = useState(
+    EditorState.createEmpty()
+  );
+  const [historyEditorState, setHistoryEditorState] = useState(
+    EditorState.createEmpty()
+  );
+  const [valuesForm,setValuesForm] =useState<Record<string, string>>({})
+  const auth=useAuth();
+  async function handleSubmit() {
+    setLoading(true)
+    const benefitsHtml = stateToHTML(benefitsEditorState.getCurrentContent());
+    const historyHtml = stateToHTML(historyEditorState.getCurrentContent());
+    const data:FormData = new FormData();
+    for (const [key, value] of Object.entries(valuesForm)) {
+      data.append(key,value)
+    }
+    data.append("history",historyHtml)
+    data.append("benefits",benefitsHtml)
+    data.append("name",foodName)
+    if(file){
+      data.append("image",file)
+    }
+    var response = await axios({
+      method: 'post',
+      url: process.env.REACT_APP_API_URL+'/food/createfood',
+      data: data, 
+      headers: {
+      "Authorization": "Bearer "+ auth.token
+      }, 
+    })
+    if(response.status===200){
+      console.log(response)
+      setSuccessOpen(true)
+    }
+    else{
+      console.log(response)
+      setErrOpen(true)
+    }
+    setLoading(false)
+  }
   function handleChange(e: any) {
-    setFile(URL.createObjectURL(e.target.files[0]));
+    setFile(e.target.files[0]);
+    setPreview(URL.createObjectURL(e.target.files[0]));
   }
   return (
     <div id="myprofile-page-container">
+      {loading && <LoadingCarousel />}
       <CancelDialog open={showCancelDialog} setOpen={setShowCancelDialog} />
       <ApprovalDialog
         open={showApprovalDialog}
         setOpen={setShowApprovalDialog}
+        submitFunction={handleSubmit}
+      />
+      <SuccessDialog
+      header={"Başarıyla yayınlandı!"}
+      message={"Yeni besiniz kaydedildi ve yayınlandı!"}
+      buttonMessage="Tamam"
+      navigateTo={"/besin-kalorileri"}
+      open={successOpen}
+      setOpen={setSuccessOpen}
+      />
+      <ErrorDialog
+      header={"Besininiz kaydedilemedi!"}
+      message={"Yeni besiniz ne yazıkki kaydedilemedi."}
+      buttonMessage="Tamam"
+      open={errOpen}
+      setOpen={setErrOpen}
       />
       <div className="my-20 w-4/6">
         <label htmlFor="img-input">
           <img
             className="absolute inset-x-0 shadow-xl bg-white h-80 mx-auto  rounded-full "
-            src={file}
+            src={preview}
           />
           <input
             type="file"
             id="img-input"
             className="hidden"
+            accept="image/*"
             onChange={handleChange}
           />
         </label>
@@ -51,7 +123,7 @@ export default function AddNewFood() {
       <div className="w-full flex justify-center">
         <div className="max-w rounded overflow-hidden bg-white shadow-lg w-4/6 mb-20  ">
           <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2 text-center">Ananas</div>
+            <div className="font-bold text-xl mb-2 text-center mx-auto"><input className="text-center" type="text" placeholder="Besin Adı" onChange={(event:any)=> setFoodName(event.target.value)}/></div>
             <div className="w-6/6 mx-auto mb-5">
               <Disclosure as="nav" className="bg-gray-800">
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 flex sm:justify-center justify-between">
@@ -208,9 +280,17 @@ export default function AddNewFood() {
                 </DisclosurePanel>
               </Disclosure>
             </div>
-            <AddFoodDetailValue currentMenu={currentMenu} />
-            <AddFoodBenefits currentMenu={currentMenu} />
-            <AddFoodHistory currentMenu={currentMenu} />
+            <AddFoodDetailValue currentMenu={currentMenu} setValuesForm={setValuesForm}  foodName={foodName}/>
+            <AddFoodBenefits
+              currentMenu={currentMenu}
+              editorState={benefitsEditorState}
+              setEditorState={setBenefitsEditorState}
+            />
+            <AddFoodHistory
+              currentMenu={currentMenu}
+              editorState={historyEditorState}
+              setEditorState={setHistoryEditorState}
+            />
             <div id="buttons" className="flex mt-20">
               <button
                 className="ml-auto rounded-md bg-gray-800 px-3 py-1.5 text-base text-white outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
