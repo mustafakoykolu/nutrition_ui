@@ -3,9 +3,13 @@ import { FoodType } from "../../Models/FoodType";
 
 type Props={
   food:FoodType
+  addRecipeFood:boolean
+  setAddedFoodId?:any
+  setAddFoodDialogOpen?:any
 }
 export default function FoodCard(props:Props) {
   const navigate = useNavigate()
+
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg ml-10 mr-10 mt-10">
       <img
@@ -14,7 +18,7 @@ export default function FoodCard(props:Props) {
         alt="Sunset in the mountains"
       />
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">Besin Değerleri</div>
+        <div className="font-bold text-xl mb-2">{props.food.name}</div>
         <div className="grid grid-rows-2 grid-col-2 gap-2">
           <div className="row-span-1 col-span-1 font-bold ">Kalori:</div>
           <div className="row-span-1 col-span-1 col-start-2  ">{props.food.kCal}</div>
@@ -30,11 +34,16 @@ export default function FoodCard(props:Props) {
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
         1 Porsiyon = {props.food.portion+" "+ props.food.portionUnit}
         </span>
-        <button className="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-white ml-auto mb-2 hover:bg-blue-500" onClick={()=>{
+        {props.addRecipeFood ? <button className="inline-block bg-blue-500  rounded-full px-3 py-1 text-sm font-semibold text-white ml-auto mb-2 hover:bg-blue-500" onClick={()=>{
+          props.setAddedFoodId(props.food.id)
+          props.setAddFoodDialogOpen(false)
+        }}>
+          <span>ekle</span>
+        </button>:<button className="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-white ml-auto mb-2 hover:bg-blue-500" onClick={()=>{
           navigate("/besin-kalorileri/detay?id="+props.food.id)
         }}>
           <span>detay</span>
-        </button>
+        </button>}
       </div>
     </div>
   );

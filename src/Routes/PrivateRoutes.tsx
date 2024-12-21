@@ -30,7 +30,7 @@ function PrivateRoutes() {
         <Route path="/yemek-tarifleri/ekle" element={<AddNewRecipe />} />
 
         {/*Besin Kalori Takip*/}
-        <Route path="/besin-kalorileri" element={<FoodPage />} />
+        <Route path="/besin-kalorileri" element={<FoodPage addRecipeFood={false}/>} />
         <Route path="/besin-kalorileri/ekle" element={<AddNewFood />} />
         <Route path="/besin-kalorileri/detay" element={<FoodDetailPage />} />
 

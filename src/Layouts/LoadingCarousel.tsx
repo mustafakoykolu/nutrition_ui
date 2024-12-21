@@ -54,9 +54,6 @@ export function LoadingCarousel() {
             <img src={ejderImg} alt="ejder" />
           </div>
         </Slider>
-        <div className="mt-10 ">
-          <span>Yükleniyor...</span>
-        </div>
       </div>
     </div>
   );
