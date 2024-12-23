@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { FoodType } from "../../Models/FoodType";
+import { Food } from "../../Models/Food";
 
 type Props={
-  food:FoodType
+  food:Food
   addRecipeFood:boolean
   setAddedFoodId?:any
   setAddFoodDialogOpen?:any
@@ -14,33 +14,43 @@ export default function FoodCard(props:Props) {
     <div className="max-w-sm rounded overflow-hidden shadow-lg ml-10 mr-10 mt-10">
       <img
         className="w-full"
-        src={process.env.REACT_APP_IMAGES_URL+props.food.imagePath}
+        src={process.env.REACT_APP_IMAGES_URL+"props.food.imagePath"}
         alt="Sunset in the mountains"
       />
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{props.food.name}</div>
+        <div className="font-bold text-xl mb-2">{props.food.descriptionTr}</div>
         <div className="grid grid-rows-2 grid-col-2 gap-2">
           <div className="row-span-1 col-span-1 font-bold ">Kalori:</div>
-          <div className="row-span-1 col-span-1 col-start-2  ">{props.food.kCal}</div>
+          <div className="row-span-1 col-span-1 col-start-2  ">
+            {props.food.foodNutrients
+              .filter((foodNutrients) => foodNutrients.nutrient.rank === 300)
+              .map((foodNutrients) => foodNutrients.amount)}
+          </div>
           <div className="row-span-1 col-span-1 font-bold ">Karbonhidrat:</div>
-          <div className="row-span-1 col-span-1 col-start-2 ">{props.food.carbs}</div>
+          <div className="row-span-1 col-span-1 col-start-2 ">  {props.food.foodNutrients
+              .filter((foodNutrients) => foodNutrients.nutrient.rank === 1110)
+              .map((foodNutrients) => foodNutrients.amount?.toFixed(2))}</div>
           <div className="row-span-1 col-span-1 font-bold ">Protein:</div>
-          <div className="row-span-1 col-span-1 col-start-2 ">{props.food.protein}</div>
+          <div className="row-span-1 col-span-1 col-start-2 ">{props.food.foodNutrients
+              .filter((foodNutrients) => foodNutrients.nutrient.rank === 600)
+              .map((foodNutrients) => foodNutrients.amount?.toFixed(2))}</div>
           <div className="row-span-1 col-span-1 font-bold ">Yağ:</div>
-          <div className="row-span-1 col-span-1 col-start-2 ">{props.food.fat}</div>
+          <div className="row-span-1 col-span-1 col-start-2 ">{props.food.foodNutrients
+              .filter((foodNutrients) => foodNutrients.nutrient.rank === 800)
+              .map((foodNutrients) => foodNutrients.amount?.toFixed(2))}</div>
         </div>
       </div>
       <div className="px-6 pt-4 pb-2 flex">
         <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-        1 Porsiyon = {props.food.portion+" "+ props.food.portionUnit}
+        {/* 1 Porsiyon = {props.food.portion+" "+ props.food.portionUnit} */}
         </span>
         {props.addRecipeFood ? <button className="inline-block bg-blue-500  rounded-full px-3 py-1 text-sm font-semibold text-white ml-auto mb-2 hover:bg-blue-500" onClick={()=>{
-          props.setAddedFoodId(props.food.id)
+          // props.setAddedFoodId(props.food.id)
           props.setAddFoodDialogOpen(false)
         }}>
           <span>ekle</span>
         </button>:<button className="inline-block bg-gray-800 rounded-full px-3 py-1 text-sm font-semibold text-white ml-auto mb-2 hover:bg-blue-500" onClick={()=>{
-          navigate("/besin-kalorileri/detay?id="+props.food.id)
+          // navigate("/besin-kalorileri/detay?id="+props.food.id)
         }}>
           <span>detay</span>
         </button>}

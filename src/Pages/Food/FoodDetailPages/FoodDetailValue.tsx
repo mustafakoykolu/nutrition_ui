@@ -1,13 +1,13 @@
-import { FoodType } from "../../../Models/FoodType";
+import { Food } from "../../../Models/Food";
 
 type Props = {
-  food: FoodType
+  food: Food
 }
 export default function FoodDetailValue(props:Props) {
   return (
     <div id="food-values">
       <h1 className="font-bold text-xl mb-3">Ananasın Besin Değerleri</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="font-bold">Kalori:</div>
         <div>{props.food.kCal}</div>
         <div className="font-bold">Karbonhidrat:</div>
@@ -72,7 +72,7 @@ export default function FoodDetailValue(props:Props) {
         <div>{props.food.cholesterol}</div>
         <div className="font-bold">Kafein:</div>
         <div>{props.food.caffeine}</div>
-      </div>
+      </div> */}
     </div>
   );
 }
