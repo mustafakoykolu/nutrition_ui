@@ -175,9 +175,48 @@ for food in data.get("FoundationFoods", []):
     
     #Carbohydrate ekle
 
-    
+    Carbohydrate = None
+    Fiber = None
+    Strach = None
 
+    for nutrient in food["foodNutrients"]:
+        if(nutrient["nutrient"]["name"]=="Carbohydrate, by difference"):
+            Carbohydrate = nutrient.get("amount") * 1000
+        if(nutrient["nutrient"]["name"]=="Fiber, total dietary"):
+            Fiber = nutrient.get("amount") * 1000
+        if(nutrient["nutrient"]["name"]=="Starch"):
+            Strach = nutrient.get("amount") * 1000
 
+    food_query = """
+    INSERT INTO "Carbohydrate" 
+    ("DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "FoodId", "Carbohydrate", "Fiber", "Strach")
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    RETURNING "Id;
+    """
+    cursor.execute(food_query, (date_created, created_by, date_modified, modified_by, idd, Carbohydrate, Fiber, Strach))
+    carbIdd = cursor.fetchone()[0]
+    #Sugars ekle
+
+    for nutrient in food["foodNutrients"]:
+        if(nutrient["nutrient"]["name"]=="Sucrose"):
+            Sucrose = nutrient.get("amount") * 1000
+        if(nutrient["nutrient"]["name"]=="Glucose"):
+            Glucose = nutrient.get("amount") * 1000
+        if(nutrient["nutrient"]["name"]=="Fructose"):
+            Fructose = nutrient.get("amount") * 1000
+        if(nutrient["nutrient"]["name"]=="Lactose"):
+            Lactose = nutrient.get("amount") * 1000
+        if(nutrient["nutrient"]["name"]=="Maltose"):
+            Maltose = nutrient.get("amount") * 1000
+        if(nutrient["nutrient"]["name"]=="Galactose"):
+            Galactose = nutrient.get("amount") * 1000
+
+    food_query = """
+    INSERT INTO "Sugars" 
+    ("DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "CarbohydrateId", "Sucrose", "Glucose", "Fructose", "Lactose", "Maltose", "Galactose")
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+    """
+    cursor.execute(food_query, (date_created, created_by, date_modified, modified_by, carbIdd, Sucrose, Glucose, Fructose, Lactose, Maltose, Galactose))
 
     # Veritabanına işlemleri kaydet
     conn.commit()
