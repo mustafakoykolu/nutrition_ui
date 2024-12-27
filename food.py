@@ -143,7 +143,7 @@ for food in data.get("FoundationFoods", []):
     food_query = """
     INSERT INTO "Minerals" 
     ("DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "FoodId", "Calcium", "Iron", "Magnesium", "Phosphorus", "Potassium", "Sodium", "Zinc", "Copper", "Manganese", "Selenium") 
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
     """
     cursor.execute(food_query, (date_created, created_by, date_modified, modified_by, idd, Calcium, Iron, Magnesium, Phosphorus, Potassium, Sodium, Zinc, Copper, Manganese, Selenium))
     # Fat Ekle
@@ -167,8 +167,8 @@ for food in data.get("FoundationFoods", []):
             TransFat = nutrient.get("amount") *1000
         
     food_query = """
-    INSERT INTO "Lipid" 
-    ("DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "FoodId", "SaturatedFat", "UnSaturatedFat", "TransFat", "Cholesterol") 
+    INSERT INTO "Lipids" 
+    ("DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "FoodId", "Saturated", "Unsaturated", "Trans", "Cholesterol") 
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s );
     """
     cursor.execute(food_query, (date_created, created_by, date_modified, modified_by, idd, SaturatedFat, UnSaturatedFat, TransFat, Cholesterol))
@@ -180,23 +180,26 @@ for food in data.get("FoundationFoods", []):
     Strach = None
 
     for nutrient in food["foodNutrients"]:
-        if(nutrient["nutrient"]["name"]=="Carbohydrate, by difference"):
-            Carbohydrate = nutrient.get("amount") * 1000
         if(nutrient["nutrient"]["name"]=="Fiber, total dietary"):
             Fiber = nutrient.get("amount") * 1000
         if(nutrient["nutrient"]["name"]=="Starch"):
             Strach = nutrient.get("amount") * 1000
 
     food_query = """
-    INSERT INTO "Carbohydrate" 
-    ("DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "FoodId", "Carbohydrate", "Fiber", "Strach")
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-    RETURNING "Id;
+    INSERT INTO "Carbohydrates" 
+    ("DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "FoodId", "Fiber", "Starch")
+    VALUES (%s, %s, %s, %s, %s, %s, %s)
+    RETURNING "Id";
     """
-    cursor.execute(food_query, (date_created, created_by, date_modified, modified_by, idd, Carbohydrate, Fiber, Strach))
+    cursor.execute(food_query, (date_created, created_by, date_modified, modified_by, idd,  Fiber, Strach))
     carbIdd = cursor.fetchone()[0]
     #Sugars ekle
-
+    Sucrose = None
+    Glucose = None
+    Fructose = None
+    Lactose = None
+    Maltose = None
+    Galactose = None
     for nutrient in food["foodNutrients"]:
         if(nutrient["nutrient"]["name"]=="Sucrose"):
             Sucrose = nutrient.get("amount") * 1000
