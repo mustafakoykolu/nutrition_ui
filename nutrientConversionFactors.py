@@ -32,8 +32,8 @@ for food in data.get("FoundationFoods", []):
         print(inputFood)
         food_query = """
         INSERT INTO "NutrientConversionFactors" 
-        ("DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "Type", "ProteinValue","FatValue", "CarbohydrateValue", "FoodId") 
-        VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s) 
+        ("DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "Type", "ProteinValue","FatValue", "CarbohydrateValue", "FoodId","Value") 
+        VALUES ( %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) 
         RETURNING "Id";
         """
         typee = inputFood.get("type")
@@ -49,7 +49,10 @@ for food in data.get("FoundationFoods", []):
         carbohydrateValue = inputFood.get("carbohydrateValue")
         if carbohydrateValue is None:
             carbohydrateValue = None
-        cursor.execute(food_query, (date_object,"system", None, None ,typee,protein,fatValue,carbohydrateValue,food["ndbNumber"]))              
+        value= inputFood.get("value")
+        if(value is None):
+            value = None
+        cursor.execute(food_query, (date_object,"system", None, None ,typee,protein,fatValue,carbohydrateValue,food["ndbNumber"],value))              
     # Gıda bilgilerini ekleme
  
 

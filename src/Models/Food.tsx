@@ -5,4 +5,5 @@ export type Food= {
     description: string;
     descriptionTr: string;
     foodNutrients: FoodNutrient[];
+    imageName: string;
 }

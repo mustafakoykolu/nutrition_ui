@@ -22,26 +22,39 @@ with open("data.json", "r") as file:
     data = json.load(file)
 
 cursor = conn.cursor()
-date_object = "2024-12-22 14:30:00"
+date_object = "2024-12-27 22:30:00"
 created_by="system"
 modified_by=None
-modified_date=None  
+modified_date=None 
 # FoundationFoods listesindeki her bir gıdayı işleme
 added_foods_categories = []
 for food in data.get("FoundationFoods", []):
-    print(food["description"])
-    for inputFood in food["foodPortions"]:
-        if inputFood["id"] in added_foods_categories: continue
-        food_query = """
-        INSERT INTO "FoodPortions" 
-        ("Id", "DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "Value","MeasureUnitId","GramWeight","SequenceNumber","Amount","MinYearAcquired","FoodId") 
-        VALUES (%s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s) 
-        RETURNING "Id";
+    name= food["description"]
+    name_tr = translate_keys(name)
+    kcal = None
+    protein = None
+    water = None
+    nitrogen = None
+    portion = 100.0
+    portion_unit = "g"
+
+    for nutrient in food["foodNutrients"]:
+        if(nutrient["nutrient"]["name"]=="Energy (Atwater General Factors)"):
+            kcal = nutrient["value"]
+        if(nutrient["nutrient"]["name"]=="Protein"):
+            protein = nutrient["value"]
+        if(nutrient["nutrient"]["name"]=="Water"):
+            water = nutrient["value"]
+        if(nutrient["nutrient"]["name"]=="Nitrogen"):
+            nitrogen = nutrient["value"]   
+    food_query = """
+        INSERT INTO "Foods" 
+        ("DateCreated", "CreatedBy", "DateModified", "ModifiedBy", "Name", "NameTr", "Kcal", "Protein", "Water", "Nitrogen", "Portion", "PortionUnit") 
+        VALUES (%s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s) ;
         """
-        cursor.execute(food_query, (inputFood["id"] ,date_object,created_by, None, None ,inputFood["value"],inputFood["measureUnit"]["id"],inputFood["gramWeight"],inputFood["sequenceNumber"],inputFood["amount"],inputFood["minYearAcquired"],food["ndbNumber"]))
-        added_foods_categories.append(inputFood["measureUnit"]["id"])   
-    print(added_foods_categories)
+    cursor.execute(food_query, (idd, date_object, created_by, modified_date, modified_by, name, name_tr, kcal, protein, water, nitrogen, portion, portion_unit))   
     conn.commit()
+
 cursor.close()
 conn.close()
 

@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { Food } from "../../Models/Food";
 
+import foodPlaceholderImage from "../../assets/Images/foodPlaceholderImage.webp"
+import { useEffect } from "react";
+
 type Props={
   food:Food
   addRecipeFood:boolean
@@ -9,12 +12,17 @@ type Props={
 }
 export default function FoodCard(props:Props) {
   const navigate = useNavigate()
+  useEffect(() => {
 
+    props.food.foodNutrients
+              .filter((foodNutrients) => foodNutrients.nutrient.unitName === "kcal")
+              .map((foodNutrients) => console.log(foodNutrients.amount))
+  }, [props.food]);
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg ml-10 mr-10 mt-10">
       <img
         className="w-full"
-        src={process.env.REACT_APP_IMAGES_URL+"props.food.imagePath"}
+        src={props.food.imageName ? process.env.REACT_APP_IMAGES_URL+props.food.imageName :foodPlaceholderImage }
         alt="Sunset in the mountains"
       />
       <div className="px-6 py-4">
@@ -23,21 +31,21 @@ export default function FoodCard(props:Props) {
           <div className="row-span-1 col-span-1 font-bold ">Kalori:</div>
           <div className="row-span-1 col-span-1 col-start-2  ">
             {props.food.foodNutrients
-              .filter((foodNutrients) => foodNutrients.nutrient.rank === 300)
+              .filter((foodNutrients) => foodNutrients.nutrient.unitName === "kcal")
               .map((foodNutrients) => foodNutrients.amount)}
           </div>
           <div className="row-span-1 col-span-1 font-bold ">Karbonhidrat:</div>
           <div className="row-span-1 col-span-1 col-start-2 ">  {props.food.foodNutrients
               .filter((foodNutrients) => foodNutrients.nutrient.rank === 1110)
-              .map((foodNutrients) => foodNutrients.amount?.toFixed(2))}</div>
+              .map((foodNutrients) => Number(foodNutrients.amount).toFixed(1))}</div>
           <div className="row-span-1 col-span-1 font-bold ">Protein:</div>
           <div className="row-span-1 col-span-1 col-start-2 ">{props.food.foodNutrients
               .filter((foodNutrients) => foodNutrients.nutrient.rank === 600)
-              .map((foodNutrients) => foodNutrients.amount?.toFixed(2))}</div>
+              .map((foodNutrients) => foodNutrients.amount)}</div>
           <div className="row-span-1 col-span-1 font-bold ">Yağ:</div>
           <div className="row-span-1 col-span-1 col-start-2 ">{props.food.foodNutrients
               .filter((foodNutrients) => foodNutrients.nutrient.rank === 800)
-              .map((foodNutrients) => foodNutrients.amount?.toFixed(2))}</div>
+              .map((foodNutrients) => foodNutrients.amount)}</div>
         </div>
       </div>
       <div className="px-6 pt-4 pb-2 flex">

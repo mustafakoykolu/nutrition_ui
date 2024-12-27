@@ -8,5 +8,5 @@ export type FoodNutrient = {
     nutrient: Nutrient;
     dataPoints: number;
     median?: number;
-    amount?: number;
+    amount?: string;
 }
