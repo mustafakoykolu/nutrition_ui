@@ -1,10 +1,18 @@
+import sadFoodImage from "../../../assets/Images/sadFood.webp";
 type Props = {
-  benefits: string;
+  benefits?: string;
 };
 export default function FoodBenefits(props: Props) {
   return (
     <div id="food-benefits pb-3">
-      <div dangerouslySetInnerHTML={{ __html: props.benefits }} />
+      {props.benefits != null ? (
+        <div dangerouslySetInnerHTML={{ __html: props.benefits }} />
+      ) : (
+        <div className="text-center">
+          <span>Üzgünüz, henüz faydaları eklenmemiş</span>
+          <img className="mx-auto w-96" src={sadFoodImage} alt="Sunset in the mountains" />
+        </div>
+      )}
     </div>
   );
 }

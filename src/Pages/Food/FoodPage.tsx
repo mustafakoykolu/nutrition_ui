@@ -3,6 +3,7 @@ import FoodCard from "./FoodCard";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../Helpers/AuthHelper";
+import { LoadingCarousel } from "../../Layouts/LoadingCarousel";
 type Props = {
   addRecipeFood: boolean;
   setAddedFoodId?: any;
@@ -28,7 +29,6 @@ export default function FoodPage(
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          console.log("Görüldü");
           setPageNumber((prevPageNumber) => prevPageNumber + 1);
         }
       });
@@ -51,8 +51,7 @@ export default function FoodPage(
       },
     });
     if (response.status === 200) {
-      console.log(response);
-      if (response.data.data.DataCount === 10) setHasMore(true);
+      if (response.data.dataCount === 10) setHasMore(true);
       else setHasMore(false);
       if(refresh){
         setFoods(() => {
@@ -87,7 +86,6 @@ export default function FoodPage(
       },
     });
     if (response.status === 200) {
-      console.log(response);
       if (response.data.data.DataCount === 10) setHasMore(true);
       else setHasMore(false);
       setFoods(() => {
@@ -110,6 +108,7 @@ export default function FoodPage(
   }, [pageNumber]);
   return (
     <div id="food-page-container">
+      {loading && <LoadingCarousel/> }
       <div id="header" className="flex mt-10">
         <div className="flex flex-wrap mx-auto">
         {!props.addRecipeFood && (

@@ -1,4 +1,3 @@
-import ananas from "../../../assets/Images/ananas.png";
 import {
   Disclosure,
   DisclosureButton,
@@ -13,7 +12,10 @@ import FoodBenefits from "./FoodBenefits";
 import FoodHistory from "./FoodHistory";
 import axios from "axios";
 import { useAuth } from "../../../Helpers/AuthHelper";
-import { Food } from "../../../Models/Food";
+import { FoodType } from "../../../Models/FoodType";
+import happyFoodImage from "../../../assets/Images/happyFood.webp";
+import { LoadingCarousel } from "../../../Layouts/LoadingCarousel";
+
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -21,9 +23,11 @@ function classNames(...classes: any[]) {
 export default function FoodDetailPage() {
   const location = useLocation();
   const auth = useAuth();
-  const [food, setFood] = useState<Food | null>();
+  const [food, setFood] = useState<FoodType | null>();
+  const [loading, setLoading] = useState(false)
 
   async function getFoodById(id: string) {
+    setLoading(true)
     var response = await axios({
       method: "get",
       url: process.env.REACT_APP_API_URL + "/food/GetFoodById?id=" + id,
@@ -32,12 +36,11 @@ export default function FoodDetailPage() {
       },
     });
     if (response.status === 200) {
-      console.log(response);
       setFood(response.data);
     } else {
-      console.log(response);
       setFood(null);
     }
+    setLoading(false)
   }
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -55,7 +58,12 @@ export default function FoodDetailPage() {
           <div className="my-20 w-4/6">
             <img
               className="absolute inset-x-0 shadow-xl bg-white h-80 mx-auto  rounded-full"
-              src={process.env.REACT_APP_IMAGES_URL+"food.imagePath"}
+              src={
+                food.imageName
+                  ? process.env.REACT_APP_IMAGES_URL + food.imageName
+                  : happyFoodImage
+              }
+              alt="foodImage"
             />
           </div>
           <div className="h-40 bg-gray-800 w-4/6  mx-auto "></div>
@@ -64,7 +72,7 @@ export default function FoodDetailPage() {
             <div className="max-w rounded overflow-hidden bg-white shadow-lg w-4/6 mb-20 ">
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2 text-center">
-                  {/* {food?.name} */}
+                  {food?.nameTr}
                 </div>
                 <div className="w-6/6 mx-auto mb-5">
                   <Disclosure as="nav" className="bg-gray-800">
@@ -222,15 +230,19 @@ export default function FoodDetailPage() {
                     </DisclosurePanel>
                   </Disclosure>
                 </div>
-                {currentMenu === "foodValue" && <FoodDetailValue  food={food}/>}
-                {/* {currentMenu === "benefits" && <FoodBenefits benefits={food.benefits}/>}
-                {currentMenu === "history" && <FoodHistory history={food.history} />} */}
+                {currentMenu === "foodValue" && <FoodDetailValue food={food} />}
+                {currentMenu === "benefits" && <FoodBenefits benefits={food.benefits}/>}
+                {currentMenu === "history" && <FoodHistory history={food.history} />} 
               </div>
             </div>
           </div>
         </div>
-      ) : (
-        <div>Aradığınız besini bulamadık. Lütfen girmiş olduğunuz besin id'sini kontrol ediniz :/</div>
+      ) : loading ?   <LoadingCarousel/> : (
+        
+        <div>
+          Aradığınız besini bulamadık. Lütfen girmiş olduğunuz besin id'sini
+          kontrol ediniz :/
+        </div>
       )}
     </div>
   );
