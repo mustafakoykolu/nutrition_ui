@@ -12,7 +12,7 @@ import FoodBenefits from "./FoodBenefits";
 import FoodHistory from "./FoodHistory";
 import axios from "axios";
 import { useAuth } from "../../../Helpers/AuthHelper";
-import { FoodType } from "../../../Models/FoodType";
+import { FoodType } from "../../../Models/Food/FoodType";
 import happyFoodImage from "../../../assets/Images/happyFood.webp";
 import { LoadingCarousel } from "../../../Layouts/LoadingCarousel";
 

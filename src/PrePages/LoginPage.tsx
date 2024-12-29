@@ -46,7 +46,7 @@ function LoginPage() {
         setOpen={setShowErrorDialog}
       />
       {loading && <LoadingCarousel />}
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 p-20 bg-white m-20 shadow-xl rounded-2xl">
+      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 p-20 bg-white m-5 md:m-20  shadow-xl rounded-2xl">
         <img
           alt="Your Company"
           src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"

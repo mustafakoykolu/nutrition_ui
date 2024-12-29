@@ -53,7 +53,7 @@ export default function AddNewFood() {
     }
     data.append("history",historyHtml)
     data.append("benefits",benefitsHtml)
-    data.append("name",foodName)
+    data.append("nameTr",foodName)
     if(file){
       data.append("image",file)
     }

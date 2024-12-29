@@ -11,6 +11,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "react-router-dom";
 import { useAuth } from "../Helpers/AuthHelper";
 
+import logo from "../assets/Logos/logo.svg"
+
 function classNames(...classes: any[]) {
   return classes.filter(Boolean).join(" ");
 }
@@ -56,19 +58,18 @@ export default function Navbar() {
       current: location.pathname === "/kalori-takip",
       subMenu: caloryListSubMenu,
     },
+    {
+      name: "Sosyal",
+      href: "/sosyal-medyam",
+      current: location.pathname === "/sosyal-medyam",
+    },
     // {
     //   name: "Alışveriş Listem",
     //   href: "alisveris-listem",
     //   current: location.pathname === "/alisveris-listem",
     // },
   ];
-  const navigationEndTabs = [
-    {
-      name: "Sosyal",
-      href: "/sosyal-medyam",
-      current: location.pathname === "/sosyal-medyam",
-    },
-  ];
+
 
   function logout(): void {
     auth.logout();
@@ -97,7 +98,7 @@ export default function Navbar() {
             <div className="flex shrink-0 items-center">
               <img
                 alt="Logo"
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+                src={logo}
                 className="h-8 w-auto"
               />
             </div>
@@ -159,21 +160,6 @@ export default function Navbar() {
             </div>
           </div>
           <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-            {navigationEndTabs.map((item) => (
-              <Link
-                key={item.name}
-                aria-current={item.current ? "page" : undefined}
-                className={classNames(
-                  item.current
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                  "rounded-md px-3 py-2 text-sm font-medium"
-                )}
-                to={item.href}
-              >
-                {item.name}
-              </Link>
-            ))}
             <button
               type="button"
               className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"

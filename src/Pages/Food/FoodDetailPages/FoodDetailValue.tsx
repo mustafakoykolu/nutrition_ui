@@ -1,4 +1,4 @@
-import { FoodType } from "../../../Models/FoodType";
+import { FoodType } from "../../../Models/Food/FoodType";
 
 type Props = {
   food: FoodType;

@@ -31,6 +31,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="kCal"
               type="number"
               placeholder="0.00"
+              data-group="general"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>kcal</span>
@@ -42,6 +43,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="protein"
               type="number"
               placeholder="0.00"
+              data-group="general"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>g</span>
@@ -54,6 +56,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="water"
               type="number"
               placeholder="0.00"
+              data-group="general"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>g</span>
@@ -65,6 +68,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="nitrogen"
               type="number"
               placeholder="0.00"
+              data-group="general"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>g</span>
@@ -77,6 +81,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="caffeine"
               type="number"
               placeholder="0.00"
+              data-group="general"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -91,6 +96,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminA"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>IU</span>
@@ -102,6 +108,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminB1"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -113,6 +120,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminB2"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -124,6 +132,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminB3"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -135,6 +144,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminB5"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -146,6 +156,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminB6"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -157,6 +168,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminB7"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>µg</span>
@@ -168,6 +180,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminB9"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>µg</span>
@@ -179,6 +192,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminB12"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>µg</span>
@@ -190,6 +204,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminC"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -201,6 +216,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminD"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -212,6 +228,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminE"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -223,6 +240,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminK"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>µg</span>
@@ -234,6 +252,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminD3"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -245,6 +264,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminA1"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>IU</span>
@@ -256,12 +276,13 @@ export default function AddFoodDetailValue(props: Props) {
               name="vitaminA2"
               type="number"
               placeholder="0.00"
+              data-group="vitamin"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>IU</span>
           </div>
         </div>
-        <h1 className="font-bold text-xl mt-5 mb-3">Minerals</h1>
+        <h1 className="font-bold text-xl mt-5 mb-3">Mineral</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="font-bold">Kalsiyum:</div>
           <div className="flex">
@@ -270,6 +291,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="calcium"
               type="number"
               placeholder="0.00"
+              data-group="mineral"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -281,6 +303,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="iron"
               type="number"
               placeholder="0.00"
+              data-group="mineral"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>mg</span>
@@ -291,6 +314,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="magnesium"
               name="magnesium"
               type="number"
+              data-group="mineral"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -302,6 +326,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="phosphorus"
               name="phosphorus"
               type="number"
+              data-group="mineral"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -313,6 +338,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="potassium"
               name="potassium"
               type="number"
+              data-group="mineral"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -324,6 +350,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="sodium"
               name="sodium"
               type="number"
+              data-group="mineral"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -335,6 +362,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="zinc"
               name="zinc"
               type="number"
+              data-group="mineral"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -346,6 +374,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="copper"
               name="copper"
               type="number"
+              data-group="mineral"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -357,6 +386,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="manganese"
               name="manganese"
               type="number"
+              data-group="mineral"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -368,6 +398,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="selenium"
               name="selenium"
               type="number"
+              data-group="mineral"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -382,6 +413,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="saturated"
               name="saturated"
               type="number"
+              data-group="lipid"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -393,6 +425,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="unsaturated"
               name="unsaturated"
               type="number"
+              data-group="lipid"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -404,6 +437,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="cholesterol"
               name="cholesterol"
               type="number"
+              data-group="lipid"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -415,6 +449,7 @@ export default function AddFoodDetailValue(props: Props) {
               id="trans"
               name="trans"
               type="number"
+              data-group="lipid"
               placeholder="0.00"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
@@ -423,6 +458,30 @@ export default function AddFoodDetailValue(props: Props) {
         </div>
         <h1 className="font-bold text-xl mt-5 mb-3">Karbonhidrat</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="font-bold">Lif:</div>
+          <div className="flex">
+            <input
+              id="fiber"
+              name="fiber"
+              type="number"
+              placeholder="0.00"
+              data-group="carbohydrate"
+              className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
+            />
+            <span>g</span>
+          </div>
+          <div className="font-bold">Nişasta:</div>
+          <div className="flex">
+            <input
+              id="starch"
+              name="starch"
+              type="number"
+              placeholder="0.00"
+              data-group="carbohydrate"
+              className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
+            />
+            <span>g</span>
+          </div>
           <div className="font-bold">Sükroz:</div>
           <div className="flex">
             <input
@@ -430,6 +489,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="sucrose"
               type="number"
               placeholder="0.00"
+              data-group="carbohydrate"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>g</span>
@@ -441,6 +501,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="glucose"
               type="number"
               placeholder="0.00"
+              data-group="carbohydrate"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>g</span>
@@ -452,6 +513,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="fructose"
               type="number"
               placeholder="0.00"
+              data-group="carbohydrate"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>g</span>
@@ -463,6 +525,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="lactose"
               type="number"
               placeholder="0.00"
+              data-group="carbohydrate"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>g</span>
@@ -474,6 +537,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="maltose"
               type="number"
               placeholder="0.00"
+              data-group="carbohydrate"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>g</span>
@@ -485,6 +549,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="galactose"
               type="number"
               placeholder="0.00"
+              data-group="carbohydrate"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <span>g</span>
@@ -498,6 +563,7 @@ export default function AddFoodDetailValue(props: Props) {
               name="portion"
               type="number"
               placeholder="0.00"
+              data-group="general"
               className="w-20 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
             />
             <select id="portionUnit" name="portionUnit">

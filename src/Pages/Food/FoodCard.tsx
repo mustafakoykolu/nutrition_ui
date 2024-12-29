@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { FoodType } from "../../Models/FoodType";
+import { FoodType } from "../../Models/Food/FoodType";
 
 import foodPlaceholderImage from "../../assets/Images/happyFood.webp";
 import { useEffect } from "react";
-import { getTotalFat } from "./FoodTools";
+import { getTotalCarbohydrate, getTotalFat } from "./FoodTools";
 
 type Props = {
   food: FoodType;
@@ -32,7 +32,7 @@ export default function FoodCard(props: Props) {
             {props.food.kCal}
           </div>
           <div className="row-span-1 col-span-1 font-bold ">Karbonhidrat:</div>
-          <div className="row-span-1 col-span-1 col-start-2 "> {12}</div>
+          <div className="row-span-1 col-span-1 col-start-2 "> {getTotalCarbohydrate(props.food.carbohydrate)}</div>
           <div className="row-span-1 col-span-1 font-bold ">Protein:</div>
           <div className="row-span-1 col-span-1 col-start-2 ">
             {props.food.protein}

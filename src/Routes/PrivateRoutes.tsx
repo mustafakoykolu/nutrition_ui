@@ -11,7 +11,7 @@ import MyProfile from "../Pages/Profile/MyProfile";
 import FoodPage from "../Pages/Food/FoodPage";
 import FoodDetailPage from "../Pages/Food/FoodDetailPages/FoodDetailPage";
 import AddNewFood from "../Pages/Food/AddFoodPages/AddNewFood";
-import Recipes from "../Pages/Recipes/Recipes";
+import Recipes from "../Pages/Recipes/RecipePage";
 import RecipeDetailPage from "../Pages/Recipes/RecipeDetailPages/RecipeDetailPage";
 import AddNewRecipe from "../Pages/Recipes/AddRecipePages/AddNewRecipe";
 function PrivateRoutes() {

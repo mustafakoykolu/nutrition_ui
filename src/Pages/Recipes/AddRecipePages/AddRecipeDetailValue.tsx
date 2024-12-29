@@ -1,503 +1,321 @@
 import clsx from "clsx";
 import { useEffect } from "react";
 
+// value={Object.values(props.foodTableList)
+//   .map((food: any) => food.kCal)
+//   .reduce((total, kCal) => total + kCal, 0)
+//   .toFixed(2)}
 type Props = {
   currentMenu: string;
-  foodTableList: any;
+  totalNutrient: any;
   setValuesForm: any;
 };
 export default function AddRecipeDetailValue(props: Props) {
-  
+  useEffect(() => {
+    console.log(props.totalNutrient);
+    Object.values(props.totalNutrient)
+      .map((food: any) => food.kCal)
+      .reduce((total, kCal) => total + kCal, 0);
+  }, [props.totalNutrient]);
   return (
     <div
-      id="food-values"
+      id="recipe-values"
       className={clsx({ hidden: props.currentMenu !== "foodValue" })}
     >
-      <h1 className="font-bold text-xl mb-3">Ananasın Besin Değerleri</h1>
-      <form>
+      <h1 className="font-bold text-xl mb-3">Genel</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="font-bold">Kalori:</div>
+        <div>
+          {Object.values(props.totalNutrient)
+            .map((food: any) => food.kCal)
+            .reduce((total, kCal) => total + kCal, 0)}
+        </div>
+
+        <div className="font-bold">Protein:</div>
+        <div>
+          {Object.values(props.totalNutrient)
+            .map((food: any) => food.protein)
+            .reduce((total, protein) => total + protein, 0)}
+        </div>
+
+        <div className="font-bold">Su:</div>
+        <div>
+          {Object.values(props.totalNutrient)
+            .map((food: any) => food.water)
+            .reduce((total, water) => total + water, 0)}
+        </div>
+
+        <div className="font-bold">Azot:</div>
+        <div>
+          {Object.values(props.totalNutrient)
+            .map((food: any) => food.nitrogen)
+            .reduce((total, nitrogen) => total + nitrogen, 0)}
+        </div>
+      </div>
+      <div>
+        <h1 className="font-bold text-xl mb-3 mt-5">Vitamin</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div className="font-bold">Kalori:</div>
-            <div className="flex">
-            <input
-              id="kcal"
-              name="kcal"
-              type="text"
-              value={Object.values(props.foodTableList)
-              .map((food: any) => food.kCal)
-              .reduce((total, kCal) => total + kCal, 0)
-              .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>kcal</span>
-            </div>
-          <div className="font-bold">Karbonhidrat:</div>
-          <div className="flex">
-            <input
-              id="carbs"
-              name="carbs"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.carbs)
-                .reduce((total, carbs) => total + carbs, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>g</span>
-          </div>
-          <div className="font-bold">Protein:</div>
-          <div className="flex">
-            <input
-              id="protein"
-              name="protein"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.protein)
-                .reduce((total, protein) => total + protein, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>g</span>
-          </div>
-          <div className="font-bold">Yağ:</div>
-          <div className="flex">
-            <input
-              id="fat"
-              name="fat"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.fat)
-                .reduce((total, fat) => total + fat, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>g</span>
-          </div>
-          <div className="font-bold">Lif:</div>
-          <div className="flex">
-            <input
-              id="fiber"
-              name="fiber"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.fiber)
-                .reduce((total, fiber) => total + fiber, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>g</span>
-          </div>
-          <div className="font-bold">Şeker:</div>
-          <div className="flex">
-            <input
-              id="sugar"
-              name="sugar"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.sugar)
-                .reduce((total, sugar) => total + sugar, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>g</span>
-          </div>
-          <div className="font-bold">Tuz:</div>
-          <div className="flex">
-            <input
-              id="salt"
-              name="salt"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.salt)
-                .reduce((total, salt) => total + salt, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>g</span>
-          </div>
-          <div className="font-bold">Demir:</div>
-          <div className="flex">
-            <input
-              id="iron"
-              name="iron"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.iron)
-                .reduce((total, iron) => total + iron, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
-          </div>
           <div className="font-bold">Vitamin A:</div>
-          <div className="flex">
-            <input
-              id="vitamin-a"
-              name="vitamin-a"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminA)
-                .reduce((total, vitaminA) => total + vitaminA, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>IU</span>
-          </div>
-          <div className="font-bold">Vitamin C:</div>
-          <div className="flex">
-            <input
-              id="vitamin-c"
-              name="vitamin-c"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminC)
-                .reduce((total, vitaminC) => total + vitaminC, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
-          </div>
-          <div className="font-bold">Vitamin D:</div>
-          <div className="flex">
-            <input
-              id="vitamin-d"
-              name="vitamin-d"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminD)
-                .reduce((total, vitaminD) => total + vitaminD, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
-          </div>
-          <div className="font-bold">Vitamin E:</div>
-          <div className="flex">
-            <input
-              id="vitamin-e"
-              name="vitamin-e"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminE)
-                .reduce((total, vitaminE) => total + vitaminE, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
-          </div>
-          <div className="font-bold">Vitamin K:</div>
-          <div className="flex">
-            <input
-              id="vitamin-k"
-              name="vitamin-k"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminK)
-                .reduce((total, vitaminK) => total + vitaminK, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>µg</span>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminA)
+              .reduce((total, vitaminA) => total + vitaminA, 0)}
           </div>
           <div className="font-bold">Vitamin B1:</div>
-          <div className="flex">
-            <input
-              id="vitamin-b1"
-              name="vitamin-b1"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminB1)
-                .reduce((total, vitaminB1) => total + vitaminB1, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminB1)
+              .reduce((total, vitaminB1) => total + vitaminB1, 0)}
           </div>
           <div className="font-bold">Vitamin B2:</div>
-          <div className="flex">
-            <input
-              id="vitamin-b2"
-              name="vitamin-b2"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminB2)
-                .reduce((total, vitaminB2) => total + vitaminB2, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminB2)
+              .reduce((total, vitaminB2) => total + vitaminB2, 0)}
           </div>
           <div className="font-bold">Vitamin B3:</div>
-          <div className="flex">
-            <input
-              id="vitamin-b3"
-              name="vitamin-b3"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminB3)
-                .reduce((total, vitaminB3) => total + vitaminB3, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminB3)
+              .reduce((total, vitaminB3) => total + vitaminB3, 0)}
           </div>
           <div className="font-bold">Vitamin B5:</div>
-          <div className="flex">
-            <input
-              id="vitamin-b5"
-              name="vitamin-b5"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminB5)
-                .reduce((total, vitaminB5) => total + vitaminB5, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminB5)
+              .reduce((total, vitaminB5) => total + vitaminB5, 0)}
           </div>
           <div className="font-bold">Vitamin B6:</div>
-          <div className="flex">
-            <input
-              id="vitamin-b6"
-              name="vitamin-b6"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminB6)
-                .reduce((total, vitaminB6) => total + vitaminB6, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminB6)
+              .reduce((total, vitaminB6) => total + vitaminB6, 0)}
           </div>
           <div className="font-bold">Vitamin B7:</div>
-          <div className="flex">
-            <input
-              id="vitamin-b7"
-              name="vitamin-b7"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminB7)
-                .reduce((total, vitaminB7) => total + vitaminB7, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>µg</span>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminB7)
+              .reduce((total, vitaminB7) => total + vitaminB7, 0)}
           </div>
           <div className="font-bold">Vitamin B9:</div>
-          <div className="flex">
-            <input
-              id="vitamin-b9"
-              name="vitamin-b9"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminB9)
-                .reduce((total, vitaminB9) => total + vitaminB9, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>µg</span>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminB9)
+              .reduce((total, vitaminB9) => total + vitaminB9, 0)}
           </div>
           <div className="font-bold">Vitamin B12:</div>
-          <div className="flex">
-            <input
-              id="vitamin-b12"
-              name="vitamin-b12"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.vitaminB12)
-                .reduce((total, vitaminB12) => total + vitaminB12, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>µg</span>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminB12)
+              .reduce((total, vitaminB12) => total + vitaminB12, 0)}
           </div>
-          <div className="font-bold">Kalsiyum:</div>
-          <div className="flex">
-            <input
-              id="calcium"
-              name="calcium"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.calcium)
-                .reduce((total, calcium) => total + calcium, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div className="font-bold">Vitamin C:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminC)
+              .reduce((total, vitaminC) => total + vitaminC, 0)}
           </div>
-          <div className="font-bold">Fosfor:</div>
-          <div className="flex">
-            <input
-              id="phosphorus"
-              name="phosphorus"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.phosphorus)
-                .reduce((total, phosphorus) => total + phosphorus, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div className="font-bold">Vitamin D:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminD)
+              .reduce((total, vitaminD) => total + vitaminD, 0)}
           </div>
-          <div className="font-bold">Magnezyum:</div>
-          <div className="flex">
-            <input
-              id="magnesium"
-              name="magnesium"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.magnesium)
-                .reduce((total, magnesium) => total + magnesium, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div className="font-bold">Vitamin E:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminE)
+              .reduce((total, vitaminE) => total + vitaminE, 0)}
           </div>
-          <div className="font-bold">Çinko:</div>
-          <div className="flex">
-            <input
-              id="zinc"
-              name="zinc"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.zinc)
-                .reduce((total, zinc) => total + zinc, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div className="font-bold">Vitamin K:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminK)
+              .reduce((total, vitaminK) => total + vitaminK, 0)}
           </div>
-          <div className="font-bold">Bakır:</div>
-          <div className="flex">
-            <input
-              id="copper"
-              name="copper"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.copper)
-                .reduce((total, copper) => total + copper, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div className="font-bold">Vitamin D3:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminD3)
+              .reduce((total, vitaminD3) => total + vitaminD3, 0)}
           </div>
-          <div className="font-bold">Mangan:</div>
-          <div className="flex">
-            <input
-              id="manganese"
-              name="manganese"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.manganese)
-                .reduce((total, manganese) => total + manganese, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>µg</span>
+          <div className="font-bold">Retinol (Vitamin A1):</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminA1)
+              .reduce((total, vitaminA1) => total + vitaminA1, 0)}
           </div>
-          <div className="font-bold">Selenyum:</div>
-          <div className="flex">
-            <input
-              id="selenium"
-              name="selenium"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.selenium)
-                .reduce((total, selenium) => total + selenium, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
-          </div>
-          <div className="font-bold">Potasyum:</div>
-          <div className="flex">
-            <input
-              id="potassium"
-              name="potassium"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.potassium)
-                .reduce((total, potassium) => total + potassium, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
-          </div>
-          <div className="font-bold">Sodyum:</div>
-          <div className="flex">
-            <input
-              id="sodium"
-              name="sodium"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.sodium)
-                .reduce((total, sodium) => total + sodium, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
-          </div>
-          <div className="font-bold">Kolesterol:</div>
-          <div className="flex">
-            <input
-              id="cholesterol"
-              name="cholesterol"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.cholesterol)
-                .reduce((total, cholesterol) => total + cholesterol, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
-          </div>
-          <div className="font-bold">Kafein:</div>
-          <div className="flex">
-            <input
-              id="caffeine"
-              name="caffeine"
-              type="text"
-              value={Object.values(props.foodTableList)
-                .map((food: any) => food.caffeine)
-                .reduce((total, caffeine) => total + caffeine, 0)
-                .toFixed(2)}
-              placeholder="0.00"
-              className="w-14 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 "
-            />
-            <span>mg</span>
+          <div className="font-bold">Beta-Carotene (Vitamin A2):</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.vitamin.vitaminA2)
+              .reduce((total, vitaminA2) => total + vitaminA2, 0)}
           </div>
         </div>
-      </form>
+      </div>
+
+      <div>
+        <h1 className="font-bold text-xl mb-3 mt-5">Mineral</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="font-bold">Kalsiyum:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.mineral.calcium)
+              .reduce((total, calcium) => total + calcium, 0)}
+          </div>
+          <div className="font-bold">Demir:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.mineral.iron)
+              .reduce((total, iron) => total + iron, 0)}
+          </div>
+          <div className="font-bold">Magnezyum:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.mineral.magnesium)
+              .reduce((total, magnesium) => total + magnesium, 0)}
+          </div>
+          <div className="font-bold">Fosfor:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.mineral.phosphorus)
+              .reduce((total, phosphorus) => total + phosphorus, 0)}
+          </div>
+          <div className="font-bold">Potasyum:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.mineral.potassium)
+              .reduce((total, potassium) => total + potassium, 0)}
+          </div>
+          <div className="font-bold">Sodyum:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.mineral.sodium)
+              .reduce((total, sodium) => total + sodium, 0)}
+          </div>
+          <div className="font-bold">Çinko:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.mineral.zinc)
+              .reduce((total, zinc) => total + zinc, 0)}
+          </div>
+          <div className="font-bold">Bakır:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.mineral.copper)
+              .reduce((total, copper) => total + copper, 0)}
+          </div>
+          <div className="font-bold">Mangan:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.mineral.manganese)
+              .reduce((total, manganese) => total + manganese, 0)}
+          </div>
+          <div className="font-bold">Selenyum:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.mineral.selenium)
+              .reduce((total, selenium) => total + selenium, 0)}
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1 className="font-bold text-xl mb-3 mt-5">Yağ</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="font-bold">Doymuş Yağ:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.fat.saturated)
+              .reduce((total, saturated) => total + saturated, 0)}
+          </div>
+
+          <div className="font-bold">Doymamış Yağ:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.fat.unsaturated)
+              .reduce((total, unsaturated) => total + unsaturated, 0)}
+          </div>
+          <div className="font-bold">Kolestrol:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.fat.cholesterol)
+              .reduce((total, cholesterol) => total + cholesterol, 0)}
+          </div>
+          <div className="font-bold">Trans Yağ:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.fat.trans)
+              .reduce((total, trans) => total + trans, 0)}
+          </div>
+        </div>
+      </div>
+      <div>
+        <h1 className="font-bold text-xl mb-3 mt-5">Karbonhidrat</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="font-bold">Lif:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.carbohydrate.fiber)
+              .reduce((total, fiber) => total + fiber, 0)}
+          </div>
+
+          <div className="font-bold">Nişasta:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.carbohydrate.starch)
+              .reduce((total, starch) => total + starch, 0)}
+          </div>
+
+          <div className="font-bold">Sükroz:</div>
+          <div>
+            {" "}
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.carbohydrate.sugar.sucrose)
+              .reduce((total, sucrose) => total + sucrose, 0)}
+          </div>
+
+          <div className="font-bold">Glukoz:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.carbohydrate.sugar.glucose)
+              .reduce((total, glucose) => total + glucose, 0)}
+          </div>
+
+          <div className="font-bold">Fruktoz:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.carbohydrate.sugar.fructose)
+              .reduce((total, fructose) => total + fructose, 0)}
+          </div>
+
+          <div className="font-bold">Laktoz:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.carbohydrate.sugar.lactose)
+              .reduce((total, lactose) => total + lactose, 0)}
+          </div>
+
+          <div className="font-bold">Maltoz:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.carbohydrate.sugar.maltose)
+              .reduce((total, maltose) => total + maltose, 0)}
+          </div>
+
+          <div className="font-bold">Galaktoz:</div>
+          <div>
+            {Object.values(props.totalNutrient)
+              .map((food: any) => food.carbohydrate.sugar.galactose)
+              .reduce((total, galactose) => total + galactose, 0)}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5 flex justify-end">
+        <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+          1 Porsiyon
+        </span>
+      </div>
     </div>
   );
 }

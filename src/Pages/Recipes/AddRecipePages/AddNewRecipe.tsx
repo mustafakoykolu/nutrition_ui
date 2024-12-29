@@ -5,7 +5,7 @@ import {
   DisclosurePanel,
 } from "@headlessui/react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddFoodDetailValue from "./AddRecipeDetailValue";
 import AddFoodBenefits from "./AddRecipeBenefits";
 import AddFoodHistory from "./AddRecipeHistory";
@@ -37,6 +37,8 @@ export default function AddNewRecipe() {
   const [errOpen, setErrOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [foodTableList, setFoodTableList] = useState<any>({});
+
+ 
 
 
   const [benefitsEditorState, setBenefitsEditorState] = useState(
@@ -364,7 +366,7 @@ export default function AddNewRecipe() {
               setEditorState={setRecipeEditorState} />
             <AddFoodDetailValue
               currentMenu={currentMenu}
-              foodTableList={foodTableList}
+              totalNutrient={foodTableList}
               setValuesForm={setValuesForm} 
             />
             <AddFoodBenefits

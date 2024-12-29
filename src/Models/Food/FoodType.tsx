@@ -1,4 +1,4 @@
-import { BaseType } from "./BaseType";
+import { BaseType } from "../BaseType";
 import { LipidType } from "./LipidType";
 import { CarbohydrateType } from "./CarbohydrateType";
 import { VitaminType } from "./VitaminType";

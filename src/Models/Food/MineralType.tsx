@@ -1,4 +1,4 @@
-import { BaseType } from "./BaseType";
+import { BaseType } from "../BaseType";
 
 export type MineralType = BaseType & {
     calcium?: number;
