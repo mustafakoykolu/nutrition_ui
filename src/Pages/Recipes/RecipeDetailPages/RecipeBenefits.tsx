@@ -1,4 +1,4 @@
-import sadFoodImage from "../../../assets/Images/sadFood.webp";
+import sadFoodImage from "../../../assets/Images/sadFood.png";
 
 
 type Props = {

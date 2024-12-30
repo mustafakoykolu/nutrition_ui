@@ -4,6 +4,8 @@ import ErrorDialog from "../Dialogs/ErrorDialog";
 import { useState } from "react";
 import { ResetPasswordType } from "../Models/ResetPasswordType";
 import SuccessDialog from "../Dialogs/SuccessDialog";
+import logo from "../assets/Logos/logo.png"
+
 async function resetPassword(
   event: any,
   auth: any,
@@ -59,8 +61,8 @@ export default function ForgotPassword() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
-            src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-            className="mx-auto h-10 w-auto"
+            src= {logo}
+            className="mx-auto h-40 w-auto"
           />
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             Şifreni Sıfırla

@@ -105,7 +105,10 @@ export default function RecipePage(
         <div className="flex flex-wrap mx-auto">
         <button
               className="block sm:hidden px-5 py-2.5 bg-gray-800 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-xl shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex mx-auto mt-5"
-              onClick={() => navigate("/besin-kalorileri/ekle")}
+              onClick={() => {
+                if( auth.token) navigate("/yemek-tarifleri/ekle")
+                else navigate("/giris")
+              }}
             >
               <span className="px-2 py-px text-white text-base font-semibold leading-relaxed">
                 Yeni Yemek Tarifi Ekle
@@ -139,7 +142,10 @@ export default function RecipePage(
           </div>
           <button
               className="hidden sm:block px-5 py-2.5 bg-gray-800 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-xl shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex mx-auto mt-5 ml-5"
-              onClick={()=> navigate("/yemek-tarifleri/ekle")}
+                 onClick={() => {
+                if( auth.token) navigate("/yemek-tarifleri/ekle")
+                else navigate("/giris")
+              }}
             >
               <span className="px-2 py-px text-white text-base font-semibold leading-relaxed">
                 Yeni Yemek Tarifi Ekle

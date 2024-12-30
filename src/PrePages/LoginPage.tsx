@@ -4,6 +4,8 @@ import { useAuth } from "../Helpers/AuthHelper";
 import ErrorDialog from "../Dialogs/ErrorDialog";
 import { useState } from "react";
 import { LoadingCarousel } from "../Layouts/LoadingCarousel";
+
+import logo from "../assets/Logos/logo.png"
 async function loginUser(
   event: any,
   auth: any,
@@ -49,8 +51,8 @@ function LoginPage() {
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 p-20 bg-white m-5 md:m-20  shadow-xl rounded-2xl">
         <img
           alt="Your Company"
-          src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-          className="mx-auto h-10 w-auto"
+          src={logo}
+          className="mx-auto h-40 w-auto"
         />
 
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">

@@ -20,13 +20,21 @@ export default function RecipeCard(props: Props) {
         <div className="font-bold text-xl mb-2">{props.meal.name}</div>
         <div className="grid grid-rows-2 grid-col-2 gap-2">
           <div className="row-span-1 col-span-1 font-bold ">Kalori:</div>
-          <div className="row-span-1 col-span-1 col-start-2  ">{props.meal.totalNutrients.kCal}</div>
+          <div className="row-span-1 col-span-1 col-start-2  ">{props.meal.totalNutrients.kCal } <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-black ml-2 mb-2">
+              kcal
+            </span></div>
           <div className="row-span-1 col-span-1 font-bold ">Karbonhidrat:</div>
-          <div className="row-span-1 col-span-1 col-start-2 ">{getTotalCarbohydrate(props.meal.totalNutrients.carbohydrate)}</div>
+          <div className="row-span-1 col-span-1 col-start-2 ">{getTotalCarbohydrate(props.meal.totalNutrients.carbohydrate)/1000} <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-black ml-2 mb-2">
+              g
+            </span></div>
           <div className="row-span-1 col-span-1 font-bold ">Protein:</div>
-          <div className="row-span-1 col-span-1 col-start-2 ">{props.meal.totalNutrients.protein}</div>
+          <div className="row-span-1 col-span-1 col-start-2 ">{props.meal.totalNutrients.protein && props.meal.totalNutrients.protein/1000} <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-black ml-2 mb-2">
+              g
+            </span></div>
           <div className="row-span-1 col-span-1 font-bold ">Yağ:</div>
-          <div className="row-span-1 col-span-1 col-start-2 ">{getTotalFat(props.meal.totalNutrients.fat)}</div>
+          <div className="row-span-1 col-span-1 col-start-2 ">{getTotalFat(props.meal.totalNutrients.fat)/1000} <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-black ml-2 mb-2">
+              g
+            </span></div>
         </div>
       </div>
       <div className="px-6 pt-4 pb-2 flex">

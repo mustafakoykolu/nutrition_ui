@@ -38,7 +38,7 @@ for food in data.get("FoundationFoods", []):
     portion_unit="g"
     print(name_tr)
     for nutrient in food["foodNutrients"]:
-        if(nutrient["nutrient"]["name"]=="Energy"):
+        if(nutrient["nutrient"]["name"]=="Energy" and nutrient["nutrient"]["unitName"]=="kcal"  ):
             kcal = nutrient["amount"]
         if(nutrient["nutrient"]["name"]=="Protein"):
             protein = nutrient["amount"] *1000

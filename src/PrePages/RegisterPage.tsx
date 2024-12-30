@@ -5,6 +5,7 @@ import SuccessDialog from "../Dialogs/SuccessDialog";
 import { useState } from "react";
 import ErrorDialog from "../Dialogs/ErrorDialog";
 import { LoadingCarousel } from "../Layouts/LoadingCarousel";
+import logo from "../assets/Logos/logo.png"
 
 function registerValidation(pwd: string, repeatPwd: string) {
   if (pwd === repeatPwd) {
@@ -69,8 +70,8 @@ function RegisterPage() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
-            src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-            className="mx-auto h-10 w-auto"
+            src={logo}
+            className="mx-auto h-40 w-auto"
           />
           <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
             Beslenme Dünyasına Kayıt Ol

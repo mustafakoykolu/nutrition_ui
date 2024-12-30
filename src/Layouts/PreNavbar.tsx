@@ -5,16 +5,29 @@ import {
   } from "@headlessui/react";
   import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
   import { Link, useLocation } from "react-router-dom";
-  
+  import logo from "../assets/Logos/logo.svg"
+
   function classNames(...classes: any[]) {
     return classes.filter(Boolean).join(" ");
   }
+
+
   
  function PreNavbar() {
     const location = useLocation();
     const pathName= location.pathname.toLowerCase();
     const navigationTabs = [
       { name: "Fit Lezzet Nedir", href: "/", current: pathName === "/" },
+      {
+        name: "Yemek Tarifleri",
+        href: "/yemek-tarifleri",
+        current: location.pathname === "/yemek-tarifleri",
+      },
+      {
+        name: "Besin Kalorileri",
+        href: "/besin-kalorileri",
+        current: location.pathname === "/besin-kalorileri",
+      },
       // {
       //   name: "Kalori Takibi",
       //   href: "/kalori-takip",
@@ -63,7 +76,7 @@ import {
               <div className="flex shrink-0 items-center">
                 <img
                   alt="Fit Lezzet Logo"
-                  src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+                  src={logo}
                   className="h-8 w-auto"
                 />
               </div>

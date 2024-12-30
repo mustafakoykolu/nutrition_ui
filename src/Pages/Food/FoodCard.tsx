@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { FoodType } from "../../Models/Food/FoodType";
 
-import foodPlaceholderImage from "../../assets/Images/happyFood.webp";
+import foodPlaceholderImage from "../../assets/Images/happyFood.png";
 import { useEffect } from "react";
 import { getTotalCarbohydrate, getTotalFat } from "./FoodTools";
 
@@ -29,17 +29,25 @@ export default function FoodCard(props: Props) {
         <div className="grid grid-rows-2 grid-col-2 gap-2">
           <div className="row-span-1 col-span-1 font-bold ">Kalori:</div>
           <div className="row-span-1 col-span-1 col-start-2  ">
-            {props.food.kCal}
+            {props.food.kCal} <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-black ml-2 mb-2">
+              kcal
+            </span>
           </div>
           <div className="row-span-1 col-span-1 font-bold ">Karbonhidrat:</div>
-          <div className="row-span-1 col-span-1 col-start-2 "> {getTotalCarbohydrate(props.food.carbohydrate)}</div>
+          <div className="row-span-1 col-span-1 col-start-2 "> {(getTotalCarbohydrate(props.food.carbohydrate)/1000).toFixed(2)} <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-black ml-2 mb-2">
+              g
+            </span></div>
           <div className="row-span-1 col-span-1 font-bold ">Protein:</div>
           <div className="row-span-1 col-span-1 col-start-2 ">
-            {props.food.protein}
+            {props.food.protein &&  (props.food.protein/1000).toFixed(2)} <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-black ml-2 mb-2">
+              g
+            </span>
           </div>
           <div className="row-span-1 col-span-1 font-bold ">Yağ:</div>
           <div className="row-span-1 col-span-1 col-start-2 ">
-            {getTotalFat(props.food.fat)}
+            {(getTotalFat(props.food.fat)/1000).toFixed(2)} <span className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-black ml-2 mb-2">
+              g
+            </span>
           </div>
         </div>
       </div>

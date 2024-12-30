@@ -30,7 +30,7 @@ export default function AddNewRecipe() {
   const [recipeName, setRecipeName] = useState<string>("");
   const [showCancelDialog, setShowCancelDialog] = useState(false);
   const [showApprovalDialog, setShowApprovalDialog] = useState(false);
-  const [currentMenu, setCurrentMenu] = useState("foodValue");
+  const [currentMenu, setCurrentMenu] = useState("recipeFoods");
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState<string>(basket);
   const [successOpen, setSuccessOpen] = useState(false);
@@ -63,7 +63,7 @@ export default function AddNewRecipe() {
       foods.push({portion: value.portion, portionUnit: value.portionUnit, foodId: value.id});
     });
     console.log(foods);
-    data.append("meadlIngredients", foods);
+    data.append("ingredients", JSON.stringify(foods));
     data.append("history", historyHtml);
     data.append("benefits", benefitsHtml);
     data.append("recipe", recipeHtml);
@@ -73,7 +73,7 @@ export default function AddNewRecipe() {
     }
     var response = await axios({
       method: "post",
-      url: process.env.REACT_APP_API_URL + "/recipe/CreateRecipe",
+      url: process.env.REACT_APP_API_URL + "/meal/CreateMeal",
       data: data,
       headers: {
         Authorization: "Bearer " + auth.token,

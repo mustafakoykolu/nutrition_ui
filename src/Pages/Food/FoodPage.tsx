@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../Helpers/AuthHelper";
 import { LoadingCarousel } from "../../Layouts/LoadingCarousel";
+import clsx from "clsx";
 type Props = {
   addRecipeFood: boolean;
   setAddedFoodId?: any;
@@ -108,20 +109,25 @@ export default function FoodPage(
   }, [pageNumber]);
   return (
     <div id="food-page-container">
-      {loading && <LoadingCarousel/> }
+      {loading && <LoadingCarousel/>} 
       <div id="header" className="flex mt-10">
         <div className="flex flex-wrap mx-auto">
         {!props.addRecipeFood && (
             <button
               className="block sm:hidden px-5 py-2.5 bg-gray-800 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-xl shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex mx-auto mt-5"
-              onClick={() => navigate("/besin-kalorileri/ekle")}
+              onClick={() => {
+                if( auth.token) navigate("/besin-kalorileri/ekle")
+                else navigate("/giris")
+              }}
             >
               <span className="px-2 py-px text-white text-base font-semibold leading-relaxed">
                 Yeni Besin Ekle
               </span>
             </button>
           )}
-          <div className=" mx-auto bg-white flex px-1 py-1 rounded-full border border-gray-800 overflow-hidden w-full sm:w-1/2 mt-5">
+          <div className={clsx("mx-auto bg-white flex px-1 py-1 rounded-full border border-gray-800 w-full overflow-hidden mt-5",
+            { "sm:w-1/2 ": props.addRecipeFood !== true}
+          )}>
             <input
               type="text"
               placeholder="Besin ara..."
@@ -150,7 +156,10 @@ export default function FoodPage(
           {!props.addRecipeFood && (
             <button
               className="hidden sm:block px-5 py-2.5 bg-gray-800 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-xl shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex mx-auto mt-5 ml-5"
-              onClick={() => navigate("/besin-kalorileri/ekle")}
+              onClick={() => {
+                if( auth.token) navigate("/besin-kalorileri/ekle")
+                else navigate("/giris")
+              }}
             >
               <span className="px-2 py-px text-white text-base font-semibold leading-relaxed">
                 Yeni Besin Ekle

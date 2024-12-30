@@ -29,8 +29,7 @@ export default function AddRecipeFoods(props: Props) {
       props.setFoodTableList((prev: any) => ({
         ...prev,
         [response.data.id]: response.data,
-      }))
-
+      }));
     } else {
       console.log(response);
     }
@@ -72,6 +71,7 @@ export default function AddRecipeFoods(props: Props) {
                 Besin Miktarı
               </th>
               <th className="px-4 py-2 border-b border-gray-300">Kalori</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -91,32 +91,38 @@ export default function AddRecipeFoods(props: Props) {
             {Object.values(props.foodTableList).map((food: any) => (
               <tr key={food.id}>
                 <td className="px-4 py-2 border-b border-gray-300">
-                  {food.name}
+                  {food.nameTr ? food.nameTr : food.name}
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300">
                   {" "}
                   <input
                     value={food.portion}
-                    onChange={(e:any) => {
+                    onChange={(e: any) => {
                       debugger;
-                      if(e.target.value > 0){
+                      if (e.target.value > 0) {
                         let foodValues = { ...food };
-                        const ratio = e.target.value / foodValues.portion ;
-                        Object.entries(foodValues).forEach(([key, value]: [string, any]) => {
-                          if (typeof value === "number") {
-                            foodValues[key] = value * ratio;
+                        const ratio = e.target.value / foodValues.portion;
+                        Object.entries(foodValues).forEach(
+                          ([key, value]: [string, any]) => {
+                            if (typeof value === "number") {
+                              foodValues[key] = value * ratio;
+                            }
                           }
-                        });
+                        );
                         props.setFoodTableList((prev: any) => ({
                           ...prev,
-                          [food.id]: { ...foodValues, portion: e.target.value ,id:food.id},
+                          [food.id]: {
+                            ...foodValues,
+                            portion: e.target.value,
+                            id: food.id,
+                          },
                         }));
                       }
-              
+
                       console.log(props.foodTableList);
                     }}
                     style={{
-                      width: `${Math.max(food.portion/10 *4, 10)}px`, // Adjust base width
+                      width: `${Math.max((food.portion / 10) * 4, 10)}px`, // Adjust base width
                       minWidth: "30px",
                       border: "1px solid #ccc",
                       padding: "2px 4px",
@@ -127,6 +133,23 @@ export default function AddRecipeFoods(props: Props) {
                 </td>
                 <td className="px-4 py-2 border-b border-gray-300">
                   {food.kCal}
+                </td>
+                <td className="px-4 py-2 border-b border-gray-300">
+                  <button className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded shadow-md focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50"  onClick={() => {
+                    // Assuming foodId is available in the scope
+                    debugger
+                    var x: { [key: number]: any } = {}
+                    Object.values(props.foodTableList).map((foodAdded: any) => {
+                      console.log(foodAdded.id)
+                      if(food.id!== foodAdded.id){
+                        x[foodAdded.id]= foodAdded
+                      }
+                    })
+                    console.log(x)
+                    props.setFoodTableList(x)
+                  }}>
+                    Sil
+                  </button>
                 </td>
               </tr>
             ))}

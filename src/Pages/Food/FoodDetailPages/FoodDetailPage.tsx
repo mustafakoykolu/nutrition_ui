@@ -13,7 +13,7 @@ import FoodHistory from "./FoodHistory";
 import axios from "axios";
 import { useAuth } from "../../../Helpers/AuthHelper";
 import { FoodType } from "../../../Models/Food/FoodType";
-import happyFoodImage from "../../../assets/Images/happyFood.webp";
+import happyFoodImage from "../../../assets/Images/happyFood.png";
 import { LoadingCarousel } from "../../../Layouts/LoadingCarousel";
 
 function classNames(...classes: any[]) {
@@ -93,83 +93,80 @@ export default function FoodDetailPage() {
                             />
                           </DisclosureButton>
                         </div>
-                        <Link
+                        <button
                           key={"foodValue"}
                           className={classNames(
-                            currentMenu === "foodValue"
-                              ? "sm:hidden bg-gray-900 text-white"
-                              : "hidden text-gray-300 hover:bg-gray-700 hover:text-white",
-                            "rounded-md px-3 py-2 text-sm font-medium"
+                          currentMenu === "foodValue"
+                            ? "sm:hidden bg-gray-900 text-white"
+                            : "hidden text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
                           )}
-                          to={"#"}
+                          onClick={() => setCurrentMenu("foodValue")}
                         >
                           {"Besin Değerleri"}
-                        </Link>
-                        <Link
+                        </button>
+                        <button
                           key={"benefits"}
                           className={classNames(
-                            currentMenu === "benefits"
-                              ? " sm:hidden  bg-gray-900 text-white"
-                              : " hidden text-gray-300 hover:bg-gray-700 hover:text-white",
-                            "rounded-md px-3 py-2 text-sm font-medium"
+                          currentMenu === "benefits"
+                            ? "sm:hidden bg-gray-900 text-white"
+                            : "hidden text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
                           )}
-                          to={"#"}
+                          onClick={() => setCurrentMenu("benefits")}
                         >
                           {"Faydaları"}
-                        </Link>
-                        <Link
+                        </button>
+                        <button
                           key={"history"}
                           className={classNames(
-                            currentMenu === "history"
-                              ? " sm:hidden  bg-gray-900 text-white"
-                              : " hidden text-gray-300 hover:bg-gray-700 hover:text-white",
-                            "rounded-md px-3 py-2 text-sm font-medium"
+                          currentMenu === "history"
+                            ? "sm:hidden bg-gray-900 text-white"
+                            : "hidden text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
                           )}
-                          to={"#"}
+                          onClick={() => setCurrentMenu("history")}
                         >
                           {"Tarihçesi"}
-                        </Link>
+                        </button>
                         <div className=" hidden sm:ml-6 sm:block flex items-center justify-center">
                           <div className="flex justify-between space-x-4">
-                            <Link
+                            <button
                               key={"foodValue"}
                               className={classNames(
-                                currentMenu === "foodValue"
-                                  ? "bg-gray-900 text-white"
-                                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                                "rounded-md px-3 py-2 text-sm font-medium"
+                              currentMenu === "foodValue"
+                                ? "bg-gray-900 text-white"
+                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                              "rounded-md px-3 py-2 text-sm font-medium"
                               )}
-                              to={"#"}
                               onClick={() => setCurrentMenu("foodValue")}
                             >
                               {"Besin Değerleri"}
-                            </Link>
-                            <Link
+                            </button>
+                            <button
                               key={"benefits"}
                               className={classNames(
-                                currentMenu === "benefits"
-                                  ? "bg-gray-900 text-white"
-                                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                                "rounded-md px-3 py-2 text-sm font-medium"
+                              currentMenu === "benefits"
+                                ? "bg-gray-900 text-white"
+                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                              "rounded-md px-3 py-2 text-sm font-medium"
                               )}
-                              to={"#"}
                               onClick={() => setCurrentMenu("benefits")}
                             >
                               {"Faydaları"}
-                            </Link>
-                            <Link
+                            </button>
+                            <button
                               key={"history"}
                               className={classNames(
-                                currentMenu === "history"
-                                  ? "bg-gray-900 text-white"
-                                  : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                                "rounded-md px-3 py-2 text-sm font-medium"
+                              currentMenu === "history"
+                                ? "bg-gray-900 text-white"
+                                : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                              "rounded-md px-3 py-2 text-sm font-medium"
                               )}
-                              to={"#"}
                               onClick={() => setCurrentMenu("history")}
                             >
                               {"Tarihçesi"}
-                            </Link>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -179,8 +176,6 @@ export default function FoodDetailPage() {
                       <div className="space-y-1 px-2 pb-3 pt-2">
                         <DisclosureButton
                           key={"foodValue"}
-                          as="a"
-                          href={"#"}
                           aria-current={
                             currentMenu === "foodValue" ? "page" : undefined
                           }
@@ -196,8 +191,6 @@ export default function FoodDetailPage() {
                         </DisclosureButton>
                         <DisclosureButton
                           key={"benefits"}
-                          as="a"
-                          href={"#"}
                           aria-current={false ? "page" : undefined}
                           className={classNames(
                             currentMenu === "benefits"
@@ -211,8 +204,6 @@ export default function FoodDetailPage() {
                         </DisclosureButton>
                         <DisclosureButton
                           key={"history"}
-                          as="a"
-                          href={"#"}
                           aria-current={
                             currentMenu === "history" ? "page" : undefined
                           }
